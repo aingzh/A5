@@ -84,7 +84,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.id
      *
      * @return the value of lend_list.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getId() {
@@ -96,7 +95,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.id
      *
      * @param id the value for lend_list.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setId(Integer id) {
@@ -108,7 +106,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.book_id
      *
      * @return the value of lend_list.book_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getBookId() {
@@ -120,7 +117,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.book_id
      *
      * @param bookId the value for lend_list.book_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setBookId(Integer bookId) {
@@ -132,7 +128,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.reader_id
      *
      * @return the value of lend_list.reader_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getReaderId() {
@@ -144,7 +139,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.reader_id
      *
      * @param readerId the value for lend_list.reader_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setReaderId(Integer readerId) {
@@ -156,7 +150,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.lend_date
      *
      * @return the value of lend_list.lend_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Date getLendDate() {
@@ -168,7 +161,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.lend_date
      *
      * @param lendDate the value for lend_list.lend_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setLendDate(Date lendDate) {
@@ -180,7 +172,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.back_date
      *
      * @return the value of lend_list.back_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Date getBackDate() {
@@ -192,7 +183,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.back_date
      *
      * @param backDate the value for lend_list.back_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setBackDate(Date backDate) {
@@ -204,7 +194,6 @@ public class LendList implements Serializable {
      * This method returns the value of the database column lend_list.back_type
      *
      * @return the value of lend_list.back_type
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getBackType() {
@@ -216,7 +205,6 @@ public class LendList implements Serializable {
      * This method sets the value of the database column lend_list.back_type
      *
      * @param backType the value for lend_list.back_type
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setBackType(Integer backType) {

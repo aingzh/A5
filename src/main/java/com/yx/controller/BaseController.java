@@ -24,30 +24,32 @@ public class BaseController {
 
     /**
      * 首页
+     *
      * @return
      */
     @GetMapping("/index")
-    public String index(){
+    public String index() {
         return "index";
     }
 
     /**
      * 欢迎页面跳转
+     *
      * @return
      */
     @GetMapping("/welcome")
-    public String welcome(Model model){
+    public String welcome(Model model) {
         //提供公告信息
-        PageInfo<Notice> pageInfo =  noticeService.queryAllNotice(null,1,5);
-        if (pageInfo!=null){
+        PageInfo<Notice> pageInfo = noticeService.queryAllNotice(null, 1, 5);
+        if (pageInfo != null) {
             List<Notice> noticeList = pageInfo.getList();
-            model.addAttribute("noticeList",noticeList);
+            model.addAttribute("noticeList", noticeList);
         }
         return "welcome";
     }
 
     @GetMapping("/updatePassword")
-    public String updatePwd(){
+    public String updatePwd() {
         return "pwdUpdate/updatePwd";
     }
 

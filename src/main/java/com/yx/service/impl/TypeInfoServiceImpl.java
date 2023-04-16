@@ -17,10 +17,11 @@ public class TypeInfoServiceImpl implements TypeInfoService {
 
     @Autowired
     private TypeInfoMapper typeInfoMapper;
+
     @Override
-    public PageInfo<TypeInfo> queryTypeInfoAll(String name,Integer pageNum,Integer limit) {
-        PageHelper.startPage(pageNum,limit);
-        List<TypeInfo> typeInfoList =  typeInfoMapper.queryTypeInfoAll(name);
+    public PageInfo<TypeInfo> queryTypeInfoAll(String name, Integer pageNum, Integer limit) {
+        PageHelper.startPage(pageNum, limit);
+        List<TypeInfo> typeInfoList = typeInfoMapper.queryTypeInfoAll(name);
         return new PageInfo<>(typeInfoList);
     }
 
@@ -41,9 +42,9 @@ public class TypeInfoServiceImpl implements TypeInfoService {
 
     @Override
     public void deleteTypeByIds(List<String> id) {
-        List<Integer> list=new ArrayList<>();
-        for(String cid:id){
-            int id2= Integer.valueOf(cid);
+        List<Integer> list = new ArrayList<>();
+        for (String cid : id) {
+            int id2 = Integer.valueOf(cid);
             list.add(id2);
         }
         typeInfoMapper.deleteTypeByIds(list);

@@ -10,7 +10,7 @@ public interface ReaderInfoService {
     /**
      * 查询所有记录
      */
-    PageInfo<ReaderInfo> queryAllReaderInfo(ReaderInfo readerInfo,Integer pageNum,Integer limit);
+    PageInfo<ReaderInfo> queryAllReaderInfo(ReaderInfo readerInfo, Integer pageNum, Integer limit);
 
     /**
      * 添加
@@ -35,5 +35,5 @@ public interface ReaderInfoService {
     /**
      * 根据用户名和密码查询用户信息
      */
-    ReaderInfo queryUserInfoByNameAndPassword(String username,String password);
+    ReaderInfo queryUserInfoByNameAndPassword(String username, String password);
 }

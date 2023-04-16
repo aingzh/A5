@@ -22,34 +22,36 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping("/adminIndex")
-    public String adminIndex(){
+    public String adminIndex() {
         return "admin/adminIndex";
     }
 
     @RequestMapping("/adminAll")
     @ResponseBody
-    public DataInfo queryAdminAll(Admin admin, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit){
-        PageInfo<Admin> pageInfo = adminService.queryAdminAll(admin,pageNum,limit);
-        return DataInfo.ok("成功",pageInfo.getTotal(),pageInfo.getList());
+    public DataInfo queryAdminAll(Admin admin, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit) {
+        PageInfo<Admin> pageInfo = adminService.queryAdminAll(admin, pageNum, limit);
+        return DataInfo.ok("成功", pageInfo.getTotal(), pageInfo.getList());
     }
 
     /**
      * 添加页面的跳转
+     *
      * @return
      */
     @GetMapping("/adminAdd")
-    public String adminAdd(){
+    public String adminAdd() {
         return "admin/adminAdd";
     }
 
     /**
      * 添加提交
+     *
      * @param admin
      * @return
      */
     @RequestMapping("/addAdminSubmit")
     @ResponseBody
-    public DataInfo addBookSubmit(Admin admin){
+    public DataInfo addBookSubmit(Admin admin) {
         adminService.addAdminSubmit(admin);
         return DataInfo.ok();
     }
@@ -58,8 +60,8 @@ public class AdminController {
      * 根据id查询
      */
     @GetMapping("/queryAdminById")
-    public String queryAdminById(Integer id, Model model){
-        model.addAttribute("id",id);
+    public String queryAdminById(Integer id, Model model) {
+        model.addAttribute("id", id);
         return "admin/updateAdmin";
     }
 
@@ -68,11 +70,11 @@ public class AdminController {
      */
     @RequestMapping("/updatePwdSubmit")
     @ResponseBody
-    public DataInfo updatePwdSubmit(Integer id,String oldPwd,String newPwd){
+    public DataInfo updatePwdSubmit(Integer id, String oldPwd, String newPwd) {
         Admin admin = adminService.queryAdminById(id);//根据id查询对象
-        if (!oldPwd.equals(admin.getPassword())){
+        if (!oldPwd.equals(admin.getPassword())) {
             return DataInfo.fail("输入的旧密码错误");
-        }else{
+        } else {
             admin.setPassword(newPwd);
             adminService.updateAdminSubmit(admin);//数据库修改
             return DataInfo.ok();
@@ -84,7 +86,7 @@ public class AdminController {
      */
     @RequestMapping("/deleteAdminByIds")
     @ResponseBody
-    public DataInfo deleteAdminByIds(String ids){
+    public DataInfo deleteAdminByIds(String ids) {
         List<String> list = Arrays.asList(ids.split(","));
         adminService.deleteAdminByIds(list);
         return DataInfo.ok();

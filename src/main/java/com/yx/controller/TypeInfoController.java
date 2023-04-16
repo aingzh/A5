@@ -20,10 +20,11 @@ public class TypeInfoController {
 
     /**
      * 类型管理首页
+     *
      * @return
      */
     @GetMapping("/typeIndex")
-    public String typeIndex(){
+    public String typeIndex() {
         return "type/typeIndex";
     }
 
@@ -32,16 +33,16 @@ public class TypeInfoController {
      */
     @RequestMapping("/typeAll")
     @ResponseBody       //@ResponseBody将java对象转为json格式的数据，表示该方法的返回结果直接写入 HTTP response body 中，一般在异步ajax获取数据时使用
-    public DataInfo typeAll(String name, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit){
-        PageInfo<TypeInfo> pageInfo = typeInfoService.queryTypeInfoAll(name,pageNum,limit);
-        return DataInfo.ok("成功",pageInfo.getTotal(),pageInfo.getList());//总条数getTotal，数据封装成list,以便加载分页显示,由于加了ResponseBody,就会返回一个字符串
+    public DataInfo typeAll(String name, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit) {
+        PageInfo<TypeInfo> pageInfo = typeInfoService.queryTypeInfoAll(name, pageNum, limit);
+        return DataInfo.ok("成功", pageInfo.getTotal(), pageInfo.getList());//总条数getTotal，数据封装成list,以便加载分页显示,由于加了ResponseBody,就会返回一个字符串
     }
 
     /**
      * 添加页面的跳转
      */
     @GetMapping("/typeAdd")
-    public String typeAdd(){
+    public String typeAdd() {
         return "type/typeAdd";
     }
 
@@ -50,7 +51,7 @@ public class TypeInfoController {
      */
     @PostMapping("/addTypeSubmit")
     @ResponseBody
-    public DataInfo addTypeSubmit(TypeInfo info){
+    public DataInfo addTypeSubmit(TypeInfo info) {
         typeInfoService.addTypeSubmit(info);
         return DataInfo.ok();
     }
@@ -59,9 +60,9 @@ public class TypeInfoController {
      * 类型根据id查询(修改)
      */
     @GetMapping("/queryTypeInfoById")
-    public String queryTypeInfoById(Integer id, Model model){
-        TypeInfo info= typeInfoService.queryTypeInfoById(id);
-        model.addAttribute("info",info);
+    public String queryTypeInfoById(Integer id, Model model) {
+        TypeInfo info = typeInfoService.queryTypeInfoById(id);
+        model.addAttribute("info", info);
         return "type/updateType";
     }
 
@@ -71,18 +72,19 @@ public class TypeInfoController {
 
     @RequestMapping("/updateTypeSubmit")
     @ResponseBody
-    public DataInfo updateTypeSubmit(@RequestBody TypeInfo info){
+    public DataInfo updateTypeSubmit(@RequestBody TypeInfo info) {
         typeInfoService.updateTypeSubmit(info);
         return DataInfo.ok();
     }
+
     /**
      * 类型删除
      */
 
     @RequestMapping("/deleteType")
     @ResponseBody
-    public DataInfo deleteType(String ids){
-        List<String> list= Arrays.asList(ids.split(","));
+    public DataInfo deleteType(String ids) {
+        List<String> list = Arrays.asList(ids.split(","));
         typeInfoService.deleteTypeByIds(list);
         return DataInfo.ok();
     }

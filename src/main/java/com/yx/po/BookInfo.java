@@ -125,7 +125,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.id
      *
      * @return the value of book_info.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getId() {
@@ -137,7 +136,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.id
      *
      * @param id the value for book_info.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setId(Integer id) {
@@ -149,7 +147,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.name
      *
      * @return the value of book_info.name
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getName() {
@@ -161,7 +158,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.name
      *
      * @param name the value for book_info.name
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setName(String name) {
@@ -173,7 +169,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.author
      *
      * @return the value of book_info.author
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getAuthor() {
@@ -185,7 +180,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.author
      *
      * @param author the value for book_info.author
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setAuthor(String author) {
@@ -197,7 +191,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.publish
      *
      * @return the value of book_info.publish
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getPublish() {
@@ -209,7 +202,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.publish
      *
      * @param publish the value for book_info.publish
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setPublish(String publish) {
@@ -221,7 +213,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.ISBN
      *
      * @return the value of book_info.ISBN
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getIsbn() {
@@ -233,7 +224,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.ISBN
      *
      * @param isbn the value for book_info.ISBN
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setIsbn(String isbn) {
@@ -245,7 +235,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.introduction
      *
      * @return the value of book_info.introduction
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getIntroduction() {
@@ -257,7 +246,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.introduction
      *
      * @param introduction the value for book_info.introduction
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setIntroduction(String introduction) {
@@ -269,7 +257,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.language
      *
      * @return the value of book_info.language
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getLanguage() {
@@ -281,7 +268,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.language
      *
      * @param language the value for book_info.language
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setLanguage(String language) {
@@ -293,7 +279,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.price
      *
      * @return the value of book_info.price
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Double getPrice() {
@@ -305,7 +290,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.price
      *
      * @param price the value for book_info.price
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setPrice(Double price) {
@@ -317,7 +301,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.publish_date
      *
      * @return the value of book_info.publish_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Date getPublishDate() {
@@ -329,7 +312,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.publish_date
      *
      * @param publishDate the value for book_info.publish_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setPublishDate(Date publishDate) {
@@ -341,7 +323,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.type_id
      *
      * @return the value of book_info.type_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getTypeId() {
@@ -353,7 +334,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.type_id
      *
      * @param typeId the value for book_info.type_id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setTypeId(Integer typeId) {
@@ -365,7 +345,6 @@ public class BookInfo implements Serializable {
      * This method returns the value of the database column book_info.status
      *
      * @return the value of book_info.status
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getStatus() {
@@ -377,7 +356,6 @@ public class BookInfo implements Serializable {
      * This method sets the value of the database column book_info.status
      *
      * @param status the value for book_info.status
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setStatus(Integer status) {

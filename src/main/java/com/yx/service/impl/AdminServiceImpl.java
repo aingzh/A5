@@ -18,9 +18,9 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public PageInfo<Admin> queryAdminAll(Admin admin, Integer pageNum, Integer limit) {
-        PageHelper.startPage(pageNum,limit);
+        PageHelper.startPage(pageNum, limit);
         List<Admin> adminList = adminMapper.queryAdminInfoAll(admin);
-        return new PageInfo<>(adminList) ;
+        return new PageInfo<>(adminList);
     }
 
     @Override
@@ -40,13 +40,13 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteAdminByIds(List<String> ids) {
-        for (String id : ids){
+        for (String id : ids) {
             adminMapper.deleteByPrimaryKey(Integer.parseInt(id));
         }
     }
 
     @Override
     public Admin queryUserByNameAndPassword(String username, String password) {
-        return adminMapper.queryUserByNameAndPassword(username,password);
+        return adminMapper.queryUserByNameAndPassword(username, password);
     }
 }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginInterceptor implements HandlerInterceptor  {
+public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
@@ -23,12 +23,12 @@ public class LoginInterceptor implements HandlerInterceptor  {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         //已经登录了就放行 否则进行拦截
-        HttpSession session=request.getSession();
-        if(session.getAttribute("user")!=null){
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
             return true;//放行
-        }else{
+        } else {
             //没有登录 跳转到登录页面进行登录操作
-            response.sendRedirect(request.getContextPath()+"/login");
+            response.sendRedirect(request.getContextPath() + "/login");
             return false;
         }
     }

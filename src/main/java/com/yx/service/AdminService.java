@@ -10,7 +10,7 @@ public interface AdminService {
     /**
      * 查询所有管理员（分页）
      */
-    PageInfo<Admin> queryAdminAll(Admin admin,Integer pageNum,Integer limit);
+    PageInfo<Admin> queryAdminAll(Admin admin, Integer pageNum, Integer limit);
 
     /**
      * 添加提交
@@ -35,5 +35,5 @@ public interface AdminService {
     /**
      * 根据用户名和密码查询用户信息
      */
-    Admin queryUserByNameAndPassword(String username,String password);
+    Admin queryUserByNameAndPassword(String username, String password);
 }

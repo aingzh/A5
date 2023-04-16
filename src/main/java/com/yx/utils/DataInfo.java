@@ -43,7 +43,7 @@ public class DataInfo implements Serializable {
     }
 
     public static DataInfo ok(String msg, long count, Object data) {
-        return new DataInfo(Constants.OK_CODE, Constants.OK_MSG, data,count);
+        return new DataInfo(Constants.OK_CODE, Constants.OK_MSG, data, count);
     }
 
     public static DataInfo ok(String msg, Object data) {

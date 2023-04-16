@@ -48,7 +48,6 @@ public class TypeInfo implements Serializable {
      * This method returns the value of the database column type_info.id
      *
      * @return the value of type_info.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getId() {
@@ -60,7 +59,6 @@ public class TypeInfo implements Serializable {
      * This method sets the value of the database column type_info.id
      *
      * @param id the value for type_info.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setId(Integer id) {
@@ -72,7 +70,6 @@ public class TypeInfo implements Serializable {
      * This method returns the value of the database column type_info.name
      *
      * @return the value of type_info.name
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getName() {
@@ -84,7 +81,6 @@ public class TypeInfo implements Serializable {
      * This method sets the value of the database column type_info.name
      *
      * @param name the value for type_info.name
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setName(String name) {

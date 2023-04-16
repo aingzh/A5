@@ -48,7 +48,6 @@ public class Admin implements Serializable {
      * This method returns the value of the database column admin.id
      *
      * @return the value of admin.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getId() {
@@ -60,7 +59,6 @@ public class Admin implements Serializable {
      * This method sets the value of the database column admin.id
      *
      * @param id the value for admin.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setId(Integer id) {
@@ -72,7 +70,6 @@ public class Admin implements Serializable {
      * This method returns the value of the database column admin.username
      *
      * @return the value of admin.username
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getUsername() {
@@ -84,7 +81,6 @@ public class Admin implements Serializable {
      * This method sets the value of the database column admin.username
      *
      * @param username the value for admin.username
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setUsername(String username) {
@@ -96,7 +92,6 @@ public class Admin implements Serializable {
      * This method returns the value of the database column admin.password
      *
      * @return the value of admin.password
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getPassword() {
@@ -108,7 +103,6 @@ public class Admin implements Serializable {
      * This method sets the value of the database column admin.password
      *
      * @param password the value for admin.password
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setPassword(String password) {
@@ -120,7 +114,6 @@ public class Admin implements Serializable {
      * This method returns the value of the database column admin.admin_type
      *
      * @return the value of admin.admin_type
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getAdminType() {
@@ -132,7 +125,6 @@ public class Admin implements Serializable {
      * This method sets the value of the database column admin.admin_type
      *
      * @param adminType the value for admin.admin_type
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setAdminType(Integer adminType) {
