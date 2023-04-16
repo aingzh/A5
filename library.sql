@@ -117,35 +117,47 @@ INSERT INTO `notice` VALUES (6, '公告内部测试6', '这是第六个内容测
 -- ----------------------------
 DROP TABLE IF EXISTS `reader_info`;
 CREATE TABLE `reader_info`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
-  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
-  `realName` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '真实姓名',
-  `sex` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
-  `birthday` date NULL DEFAULT NULL COMMENT '出生日期',
-  `address` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '籍贯',
-  `tel` varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话',
-  `email` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱',
-  `registerDate` datetime(0) NULL DEFAULT NULL COMMENT '注册日期',
-  `readerNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '读者编号',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '读者信息（包括登录账号密码等）' ROW_FORMAT = Dynamic;
+                              `id`           int(11)                                                  NOT NULL AUTO_INCREMENT COMMENT 'id',
+                              `username`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '用户名',
+                              `password`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '密码',
+                              `realName`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '真实姓名',
+                              `sex`          varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci    NULL DEFAULT NULL COMMENT '性别',
+                              `birthday`     date                                                     NULL DEFAULT NULL COMMENT '出生日期',
+                              `address`      varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '籍贯',
+                              `tel`          varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '电话',
+                              `email`        varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '邮箱',
+                              `registerDate` datetime(0)                                              NULL DEFAULT NULL COMMENT '注册日期',
+                              `readerNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '读者编号',
+                              `avatar`       varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+                              PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 4
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci COMMENT = '读者信息（包括登录账号密码等）'
+  ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of reader_info
 -- ----------------------------
-INSERT INTO `reader_info` VALUES (1, 'zhangsan', '12345', '彭于晏', '男', '2001-04-01', '江西南昌', '13767134834', 'yu123@163.com', '2021-04-02 13:18:59', '8120116041');
-INSERT INTO `reader_info` VALUES (2, 'mary', '12345', '陈恋', '女', '2004-04-01', '湖北武汉', '15270839599', 'yx123@163.com', '2021-03-06 07:57:56', '8120116044');
-INSERT INTO `reader_info` VALUES (3, 'cindy', '12345', '辛帝', '女', '2010-04-04', '北京海淀', '13834141133', 'zs1314@163.com', '2021-04-04 13:36:42', '8120116042');
+INSERT INTO `reader_info`
+VALUES (1, 'zhangsan', '12345', '彭于晏', '男', '2001-04-01', '江西南昌', '13767134834', 'yu123@163.com',
+        '2021-04-02 13:18:59', '8120116041', '');
+INSERT INTO `reader_info`
+VALUES (2, 'mary', '12345', '陈恋', '女', '2004-04-01', '湖北武汉', '15270839599', 'yx123@163.com',
+        '2021-03-06 07:57:56', '8120116044', '');
+INSERT INTO `reader_info`
+VALUES (3, 'cindy', '12345', '辛帝', '女', '2010-04-04', '北京海淀', '13834141133', 'zs1314@163.com',
+        '2021-04-04 13:36:42', '8120116042', '');
 
 -- ----------------------------
 -- Table structure for type_info
 -- ----------------------------
 DROP TABLE IF EXISTS `type_info`;
-CREATE TABLE `type_info`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图书分类名称',
-  `remarks` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+CREATE TABLE `type_info`
+(
+  `id`      int(11)                                                NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name`    varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图书分类名称',
+  `remarks` char(10) CHARACTER SET utf8 COLLATE utf8_general_ci    NULL DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '图书类型表' ROW_FORMAT = Dynamic;
 
