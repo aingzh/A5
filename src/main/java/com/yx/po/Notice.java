@@ -46,7 +46,7 @@ public class Notice implements Serializable {
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")//接收页面传来的时间格式
-    @JSONField(format="yyyy-MM-dd HH:mm:ss")//对返回的时间对象用fastjson格式化时间
+    @JSONField(format = "yyyy-MM-dd HH:mm:ss")//对返回的时间对象用fastjson格式化时间
     private Date createDate;
 
     /**
@@ -62,7 +62,6 @@ public class Notice implements Serializable {
      * This method returns the value of the database column notice.id
      *
      * @return the value of notice.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Integer getId() {
@@ -74,7 +73,6 @@ public class Notice implements Serializable {
      * This method sets the value of the database column notice.id
      *
      * @param id the value for notice.id
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setId(Integer id) {
@@ -86,7 +84,6 @@ public class Notice implements Serializable {
      * This method returns the value of the database column notice.topic
      *
      * @return the value of notice.topic
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getTopic() {
@@ -98,7 +95,6 @@ public class Notice implements Serializable {
      * This method sets the value of the database column notice.topic
      *
      * @param topic the value for notice.topic
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setTopic(String topic) {
@@ -110,7 +106,6 @@ public class Notice implements Serializable {
      * This method returns the value of the database column notice.content
      *
      * @return the value of notice.content
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getContent() {
@@ -122,7 +117,6 @@ public class Notice implements Serializable {
      * This method sets the value of the database column notice.content
      *
      * @param content the value for notice.content
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setContent(String content) {
@@ -134,7 +128,6 @@ public class Notice implements Serializable {
      * This method returns the value of the database column notice.author
      *
      * @return the value of notice.author
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public String getAuthor() {
@@ -146,7 +139,6 @@ public class Notice implements Serializable {
      * This method sets the value of the database column notice.author
      *
      * @param author the value for notice.author
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setAuthor(String author) {
@@ -158,7 +150,6 @@ public class Notice implements Serializable {
      * This method returns the value of the database column notice.create_date
      *
      * @return the value of notice.create_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public Date getCreateDate() {
@@ -170,7 +161,6 @@ public class Notice implements Serializable {
      * This method sets the value of the database column notice.create_date
      *
      * @param createDate the value for notice.create_date
-     *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     public void setCreateDate(Date createDate) {

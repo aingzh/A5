@@ -21,10 +21,10 @@ public class StatisticsController {
     private TypeInfoService typeInfoService;
 
     @GetMapping("statisticIndex")
-    public String statistics(Model model){
+    public String statistics(Model model) {
         //根据图书类型查询图书数量
         List<BookInfo> list = bookInfoService.getBookCountByType();
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
         return "count/statisticIndex";
     }
 }

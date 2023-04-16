@@ -62,5 +62,5 @@ public interface AdminMapper {
     /**
      * 根据用户名和密码查询用户信息
      */
-    Admin queryUserByNameAndPassword(@Param("username") String username,@Param("password") String password);
+    Admin queryUserByNameAndPassword(@Param("username") String username, @Param("password") String password);
 }

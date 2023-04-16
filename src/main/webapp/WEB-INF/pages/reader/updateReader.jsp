@@ -25,20 +25,28 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">读者卡号</label>
         <div class="layui-input-block">
-            <input type="text" name="readerNumber" lay-reqtext="读者卡号不能为空" value="${info.readerNumber}" autocomplete="off" class="layui-input">
+            <input type="text" name="readerNumber" lay-reqtext="读者卡号不能为空" value="${info.readerNumber}"
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="username" lay-reqtext="用户名不能为空" value="${info.username}" autocomplete="off" class="layui-input">
+            <input type="text" name="username" lay-reqtext="用户名不能为空" value="${info.username}" autocomplete="off"
+                   class="layui-input">
         </div>
     </div>
-
+    <div class="layui-form-item">
+        <label class="layui-form-label required">头像</label>
+        <div class="layui-input-block">
+            <input type="text" name="avatar" value="${info.avatar}" autocomplete="off" class="layui-input">
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">真实姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="realName" lay-reqtext="真实姓名不能为空"  value="${info.realName}" autocomplete="off" class="layui-input">
+            <input type="text" name="realName" lay-reqtext="真实姓名不能为空" value="${info.realName}"
+                   autocomplete="off" class="layui-input">
         </div>
     </div>
 

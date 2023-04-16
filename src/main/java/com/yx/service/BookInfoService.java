@@ -10,12 +10,13 @@ public interface BookInfoService {
     /**
      * 查询所有记录
      */
-    PageInfo<BookInfo> queryBookInfoAll(BookInfo bookInfo,Integer pageNum,Integer limit);
+    PageInfo<BookInfo> queryBookInfoAll(BookInfo bookInfo, Integer pageNum, Integer limit);
 
     /**
      * 添加图书记录
      */
     void addBookSubmit(BookInfo bookInfo);
+
     /**
      * 修改 根据id查询记录信息
      */

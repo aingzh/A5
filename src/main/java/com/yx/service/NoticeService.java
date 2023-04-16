@@ -10,7 +10,7 @@ public interface NoticeService {
     /**
      * 查询所有公告
      */
-    PageInfo<Notice> queryAllNotice(Notice notice,Integer pageNum,Integer limit);
+    PageInfo<Notice> queryAllNotice(Notice notice, Integer pageNum, Integer limit);
 
     /**
      * 发布公告（添加公告）
@@ -25,6 +25,7 @@ public interface NoticeService {
 
     /**
      * 删除
+     *
      * @param ids
      */
     void deleteNoticeByIds(List<String> ids);

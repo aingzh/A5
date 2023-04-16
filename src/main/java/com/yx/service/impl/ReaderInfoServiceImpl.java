@@ -18,8 +18,8 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
 
     @Override
     public PageInfo<ReaderInfo> queryAllReaderInfo(ReaderInfo readerInfo, Integer pageNum, Integer limit) {
-        PageHelper.startPage(pageNum,limit);
-        List<ReaderInfo> readerInfoList =  readerInfoMapper.queryAllReaderInfo(readerInfo);
+        PageHelper.startPage(pageNum, limit);
+        List<ReaderInfo> readerInfoList = readerInfoMapper.queryAllReaderInfo(readerInfo);
         return new PageInfo<>(readerInfoList);
     }
 
@@ -40,7 +40,7 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
 
     @Override
     public void deleteReaderInfoByIds(List<String> ids) {
-        for (String id : ids){
+        for (String id : ids) {
             readerInfoMapper.deleteByPrimaryKey(Integer.parseInt(id));
         }
     }

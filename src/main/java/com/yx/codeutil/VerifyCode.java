@@ -1,8 +1,6 @@
 package com.yx.codeutil;
 
 
-
-
 public class VerifyCode {
 
     private String code;

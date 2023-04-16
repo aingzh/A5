@@ -18,7 +18,7 @@ public class BookInfoServiceImpl implements BookInfoService {
 
     @Override
     public PageInfo<BookInfo> queryBookInfoAll(BookInfo bookInfo, Integer pageNum, Integer limit) {
-        PageHelper.startPage(pageNum,limit);
+        PageHelper.startPage(pageNum, limit);
         List<BookInfo> bookInfoList = bookInfoMapper.queryBookInfoAll(bookInfo);
         return new PageInfo<>(bookInfoList);
     }
@@ -40,7 +40,7 @@ public class BookInfoServiceImpl implements BookInfoService {
 
     @Override
     public void deleteBookByIds(List<String> ids) {
-        for (String id : ids){
+        for (String id : ids) {
             bookInfoMapper.deleteByPrimaryKey(Integer.parseInt(id));
         }
     }
