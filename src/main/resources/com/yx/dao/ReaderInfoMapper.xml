@@ -190,7 +190,7 @@
         <if test="readerNumber != null">
             readerNumber = #{readerNumber,jdbcType=VARCHAR},
         </if>
-        <if test="readerNumber != null">
+        <if test="avatar != null">
             avatar = #{avatar,jdbcType=VARCHAR},
         </if>
     </set>

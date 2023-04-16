@@ -57,7 +57,7 @@ public class ReaderInfoController {
     @RequestMapping("/addReaderSubmit")
     @ResponseBody
     public DataInfo addReaderSubmit(@RequestBody ReaderInfo readerInfo) {
-        readerInfo.setPassword("123456");//设置默认密码
+        readerInfo.setPassword(readerInfo.getPassword() != null ? readerInfo.getPassword() : "123456");//设置默认密码
         readerInfoService.addReaderInfoSubmit(readerInfo);
         return DataInfo.ok();
     }
