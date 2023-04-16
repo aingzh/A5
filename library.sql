@@ -116,7 +116,7 @@ INSERT INTO `notice` VALUES (6, '公告内部测试6', '这是第六个内容测
 -- Table structure for reader_info
 -- ----------------------------
 DROP TABLE IF EXISTS `reader_info`;
-CREATE TABLE `reader_info`  (
+CREATE TABLE `reader_info`(
                               `id`           int(11)                                                  NOT NULL AUTO_INCREMENT COMMENT 'id',
                               `username`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '用户名',
                               `password`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '密码',
