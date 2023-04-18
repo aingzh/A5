@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 开发环境指南
 
 ## 安装VSCode
@@ -65,3 +66,7 @@ npm run serve
 * Markdown: Markdown是写文档的语法。可以参照 [Markdown语法指南](https://www.jianshu.com/p/1e402922ee32/)。Markdown文件后缀名是.md
 * Vue: 我们使用的Vue 3。如果要学习，需要注意版本，Vue官方文档： [中文](https://v3.cn.vuejs.org/)， [英文](https://vuejs.org/)
 * Element Plus: https://element-plus.gitee.io/zh-CN/
+=======
+# A5
+A5图书管理系统
+>>>>>>> 1348e9915883a8d246ccdb4a63b0d254cbf47463
