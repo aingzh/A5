@@ -18,6 +18,15 @@ public class TypeInfo implements Serializable {
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
     private String name;
+    private String author;
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
 
     public String getRemarks() {
         return remarks;
