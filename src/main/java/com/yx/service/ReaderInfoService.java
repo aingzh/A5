@@ -36,4 +36,9 @@ public interface ReaderInfoService {
      * 根据用户名和密码查询用户信息
      */
     ReaderInfo queryUserInfoByNameAndPassword(String username, String password);
+
+    /**
+     * 根据邮箱和密码查询用户信息
+     */
+    ReaderInfo queryUserInfoByEmailAndPassword(String email, String password);
 }

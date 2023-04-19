@@ -49,4 +49,9 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
     public ReaderInfo queryUserInfoByNameAndPassword(String username, String password) {
         return readerInfoMapper.queryUserInfoByNameAndPassword(username, password);
     }
+
+    @Override
+    public ReaderInfo queryUserInfoByEmailAndPassword(String email, String password) {
+        return readerInfoMapper.queryUserInfoByEmailAndPassword(email, password);
+    }
 }

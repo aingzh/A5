@@ -172,3 +172,38 @@ INSERT INTO `type_info` VALUES (5, '经济学类', '搞经济');
 INSERT INTO `type_info` VALUES (6, '统计学类', '学习统计，天下无敌');
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Table structure for worker_info
+-- ----------------------------
+DROP TABLE IF EXISTS `worker_info`;
+CREATE TABLE `worker_info`(
+                              `id`           int                                                NOT NULL AUTO_INCREMENT COMMENT 'id',
+                              `username`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '用户名',
+                              `password`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '密码',
+                              `realName`     varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '真实姓名',
+                              `sex`          varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci    NULL DEFAULT NULL COMMENT '性别',
+                              `birthday`     date                                                     NULL DEFAULT NULL COMMENT '出生日期',
+                              `address`      varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '籍贯',
+                              `tel`          varchar(11) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '电话',
+                              `email`        varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '邮箱',
+                              `registerDate` datetime(0)                                              NULL DEFAULT NULL COMMENT '注册日期',
+                              `workerNumber` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci   NULL DEFAULT NULL COMMENT '工号',
+                              `avatar`       varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+                              `status`       int                                                NOT NULL COMMENT '是否在职',
+                              PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 4
+  CHARACTER SET = utf8
+  COLLATE = utf8_general_ci COMMENT = '图书馆工作人员信息（包括工号密码等）'
+  ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of worker_info
+-- ----------------------------
+INSERT INTO `worker_info`
+VALUES (1, 'worker001', '12345', '张三', '男', '2001-04-02', '陕西西安', '13767134834', 'w001@163.com', '2023-04-01 12:34:26', '20009200001', '', '1');
+INSERT INTO `worker_info`
+VALUES (2, 'worker002', '12345', '李四', '女', '2004-04-01', '湖北武汉', '15270839599', 'w002@163.com', '2023-03-06 07:57:56', '20009200002', '', '1');
+INSERT INTO `worker_info`
+VALUES (3, 'worker003', '12345', '王五', '女', '2010-04-04', '北京海淀', '13834141133', 'w003@163.com', '2023-04-04 13:36:42', '20009200003', '', '0');
