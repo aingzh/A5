@@ -233,9 +233,13 @@
             and tel like '%${tel}%'
           </if>
         </where>
-
   </select>
+
   <select id="queryUserInfoByNameAndPassword" resultType="com.yx.po.ReaderInfo">
     select * from reader_info where username=#{username} and password=#{password}
+  </select>
+
+  <select id="queryUserInfoByEmailAndPassword" resultType="com.yx.po.ReaderInfo">
+    select * from reader_info where email=#{email} and password=#{password}
   </select>
 </mapper>
