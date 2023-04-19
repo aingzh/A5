@@ -44,34 +44,30 @@ public class LendListController {
     }
 
     /**
-     * 查询所有的列表
+     * 分页查询所有借阅记录
      * 1 request获取
      * 2、参数绑定
      * 3、对象绑定
      */
     @ResponseBody
     @RequestMapping("/lendListAll")
-    public DataInfo lendListAll(Integer backType, String readerNumber, String name, Integer status,
-                                @RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "15") Integer limit) {
-
-        LendList info = new LendList();
-        info.setBackType(backType);
-
+    public DataInfo lendListAll(Integer type, String readerNumber, String name, Integer status,
+                                @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
+        LendList info=new LendList();
+        info.setBackType(type);
         //创建读者对象
-        ReaderInfo reader = new ReaderInfo();
+        ReaderInfo reader=new ReaderInfo();
         reader.setReaderNumber(readerNumber);
         //把以上对象交给info
         info.setReaderInfo(reader);
-
         //图书对象
-        BookInfo book = new BookInfo();
+        BookInfo book=new BookInfo();
         book.setName(name);
         book.setStatus(status);
         info.setBookInfo(book);
-
         //分页查询所有的记录信息
-        PageInfo pageInfo = lendListService.queryLendListAll(info, page, limit);
-        return DataInfo.ok("ok", pageInfo.getTotal(), pageInfo.getList());
+        PageInfo pageInfo=lendListService.queryLendListAll(info,page,limit);
+        return DataInfo.ok("ok",pageInfo.getTotal(),pageInfo.getList());
     }
 
     @ResponseBody
@@ -235,8 +231,12 @@ public class LendListController {
 
         final Integer c = lendListService.countWillExpireLend(((ReaderInfo) user).getId());
         if (c > 0) {
-            return DataInfo.fail("已借的书籍中有" + c + "本即将在5天内过期或已经过期");
-        } else {
+            return DataInfo.fail("已借的书籍中有" + c + "已经过期");
+        }
+        else if (c <= 0 && c > -7){
+            return DataInfo.fail("已借的书籍中有" + c + "本即将在7天内过期");
+        }
+        else {
             return DataInfo.ok();
         }
     }
