@@ -207,6 +207,7 @@
       <association property="typeInfo" javaType="com.yx.po.TypeInfo">
           <id column="id" property="id"></id>
           <result column="type_name" property="name"></result>
+          <result column="author" property="author"></result>
       </association>
   </resultMap>
   <select id="queryBookInfoAll" parameterType="com.yx.po.BookInfo" resultMap="queryBookAllMap">
@@ -223,6 +224,9 @@
         </if>
         <if test="typeId!=null">
           and  book_info.type_id like '%${typeId}%'
+        </if>
+        <if test="author!=null">
+          and  book_info.author like '%${author}%'
         </if>
       </where>
   </select>
