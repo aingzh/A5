@@ -5,8 +5,10 @@ import com.yx.codeutil.SimpleCharVerifyCodeGenImpl;
 import com.yx.codeutil.VerifyCode;
 import com.yx.po.Admin;
 import com.yx.po.ReaderInfo;
+import com.yx.po.WorkerInfo;
 import com.yx.service.AdminService;
 import com.yx.service.ReaderInfoService;
+import com.yx.service.WorkerInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +27,8 @@ public class LoginController {
     private AdminService adminService;
     @Autowired
     private ReaderInfoService readerService;
+    @Autowired
+    private WorkerInfoService workerService;
 
     /**
      * 登录页面的转发
@@ -71,6 +75,8 @@ public class LoginController {
     public String loginIn(HttpServletRequest request, Model model) {
         //获取用户名与密码
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String workerNumber = request.getParameter("workerNumber");
         String password = request.getParameter("password");
         String code = request.getParameter("captcha");
         String type = request.getParameter("type");
@@ -84,23 +90,56 @@ public class LoginController {
         } else {
             //验证码正确则判断用户名和密码
             if (type.equals("1")) {//管理员信息
-                //用户名和密码是否正确
+                //工号和密码是否正确
                 Admin admin = adminService.queryUserByNameAndPassword(username, password);
                 if (admin == null) {//该用户不存在
-                    model.addAttribute("msg", "用户名或密码错误");
+                    model.addAttribute("msg", "工号或密码错误");
                     return "login";
                 }
                 session.setAttribute("user", admin);
                 session.setAttribute("type", "admin");
-            } else {//来自读者信息表
-                ReaderInfo readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
-                if (readerInfo == null) {
-                    model.addAttribute("msg", "用户名或密码错误");
-                    return "login";
+            } else if (type.equals("2")){//来自读者信息表
+                ReaderInfo readerInfo;
+                if (email == null) {
+                    readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
+                    if (readerInfo == null) {
+                        model.addAttribute("msg", "用户名或密码错误");
+                        return "login";
+                    }
+                }else {
+                    readerInfo = readerService.queryUserInfoByEmailAndPassword(email, password);
+                    if (readerInfo == null) {
+                        model.addAttribute("msg", "邮箱或密码错误");
+                        return "login";
+                    }
                 }
                 session.setAttribute("user", readerInfo);
                 session.setAttribute("type", "reader");
+            } else if (type.equals("3")){//来自图书馆工作人员信息表
+                WorkerInfo workerInfo;
+                if (workerNumber == null) {
+                    workerInfo = workerService.queryUserInfoByNameAndPassword(username, password);
+                    if (workerInfo == null) {
+                        model.addAttribute("msg", "用户名或密码错误");
+                        return "login";
+                    } else if (workerInfo.getStatus() == 0){
+                        model.addAttribute("msg", "该图书馆管理人员已离职");
+                        return "login";
+                    }
+                } else {
+                    workerInfo = workerService.queryUserInfoByWorkerNumberAndPassword(workerNumber, password);
+                    if (workerInfo == null) {
+                        model.addAttribute("msg", "工号或密码错误");
+                        return "login";
+                    } else if (workerInfo.getStatus() == 0) {
+                        model.addAttribute("msg", "该图书馆管理人员已离职");
+                        return "login";
+                    }
+                }
+                session.setAttribute("user", workerInfo);
+                session.setAttribute("type", "worker");
             }
+
 
             return "redirect:/index";
         }

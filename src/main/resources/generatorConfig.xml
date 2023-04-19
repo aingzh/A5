@@ -2,11 +2,11 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="D:\Maven\apache-maven-3.6.0\mvn\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar" />
-    <context id="msqlTables" targetRuntime="MyBatis3">
+    <classPathEntry location="D:\Maven\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+    <context id="mysqlTables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
-        <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/library?useUnicode=true&amp;characterEncoding=utf-8"
-                        driverClass="com.mysql.jdbc.Driver" password="root" userId="root" >
+        <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/library?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"
+                        driverClass="com.mysql.cj.jdbc.Driver" password="1234" userId="root" >
 
             <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
@@ -14,16 +14,16 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成实体类和数据库表一一对应 -->
-        <javaModelGenerator targetPackage="com.yx.po" targetProject="D:\IDEAProject\libraryProject\src\main\java">
+        <javaModelGenerator targetPackage="com.yx.po" targetProject="E:\Projects\JavaProjects\SPM\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <!-- 从数据库返回的值被清理前后的空格  -->
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!--映射xml文件及dao接口-->
-        <sqlMapGenerator targetPackage="com.yx.dao" targetProject="D:\IDEAProject\libraryProject\src\main\resources">
+        <sqlMapGenerator targetPackage="com.yx.dao" targetProject="E:\Projects\JavaProjects\SPM\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yx.dao" targetProject="D:\IDEAProject\libraryProject\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yx.dao" targetProject="E:\Projects\JavaProjects\SPM\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -54,6 +54,11 @@
             <property name="useActualColumnNames" value="false"/>
         </table>
         <table tableName="type_info" domainObjectName="TypeInfo"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="worker_info" domainObjectName="WorkerInfo"
                enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" selectByExampleQueryId="false" >
             <property name="useActualColumnNames" value="false"/>
