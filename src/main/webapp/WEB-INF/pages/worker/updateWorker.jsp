@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>修改图书</title>
+    <title>修改员工</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,25 +23,25 @@
 <div class="layui-form layuimini-form">
     <input type="hidden" name="id"   value="${info.id}">
     <div class="layui-form-item">
-        <label class="layui-form-label required">读者卡号</label>
+        <label class="layui-form-label required">员工卡号</label>
         <div class="layui-input-block">
-            <input type="text" name="readerNumber" lay-reqtext="读者卡号不能为空" value="${info.readerNumber}"
-                   autocomplete="off" class="layui-input">
+            <input type="text" name="workerNumber" lay-reqtext="员工卡号不能为空" value="${info.workerNumber}" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">用户名</label>
         <div class="layui-input-block">
-            <input type="text" name="username" lay-reqtext="用户名不能为空" value="${info.username}" autocomplete="off"
-                   class="layui-input">
+            <input type="text" name="username" lay-reqtext="用户名不能为空" value="${info.username}" autocomplete="off" class="layui-input">
         </div>
     </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label required">头像</label>
         <div class="layui-input-block">
             <input type="text" name="avatar" value="${info.avatar}" autocomplete="off" class="layui-input">
         </div>
     </div>
+
     <%--
         新增住址
     --%>
@@ -55,8 +55,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">真实姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="realName" lay-reqtext="真实姓名不能为空" value="${info.realName}"
-                   autocomplete="off" class="layui-input">
+            <input type="text" name="realName" lay-reqtext="真实姓名不能为空"  value="${info.realName}" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -89,6 +88,17 @@
         </div>
     </div>
 
+    <%--
+        新增是否离职
+    --%>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">是否离职</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status"  value=0 title="离职"  ${"0" eq info.status ?"checked='checked'":''} />
+            <input type="radio" name="status"  value=1 title="在职"  ${"1" eq info.status ?"checked='checked'":''} />
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认修改</button>
@@ -114,7 +124,7 @@
             var datas=data.field;//form单中的数据信息
             //向后台发送数据提交添加
             $.ajax({
-                url:"updateReaderSubmit",
+                url:"updateWorkerSubmit",
                 type:"POST",
                 //data:datas,
                 contentType:'application/json',

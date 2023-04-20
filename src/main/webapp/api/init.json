@@ -34,6 +34,12 @@
           "target": "_self"
         },
         {
+          "title": "员工管理",
+          "href": "workerIndex",
+          "icon": "fa fa-user",
+          "target": "_self"
+        },
+        {
             "title": "类型管理",
             "href": "typeIndex",
             "icon": "fa fa-file-text",

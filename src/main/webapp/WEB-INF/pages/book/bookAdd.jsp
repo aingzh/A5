@@ -76,6 +76,17 @@
         </div>
     </div>
 
+    <%--
+        新增图书状态
+    --%>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">是否借出</label>
+        <div class="layui-input-block">
+            <input type="radio" name="status"  value=0 title="未借出"  ${"0" eq info.status ?"checked='checked'":''} />
+            <input type="radio" name="status"  value=1 title="已借出"  ${"1" eq info.status ?"checked='checked'":''} />
+        </div>
+    </div>
+
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">图书介绍</label>
         <div class="layui-input-block">
