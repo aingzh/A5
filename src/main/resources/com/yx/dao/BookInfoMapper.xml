@@ -19,6 +19,7 @@
     <result column="type_id" jdbcType="INTEGER" property="typeId" />
     <result column="lendStatus" jdbcType="INTEGER" property="lendStatus" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="searchId" jdbcType="INTEGER" property="searchId"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -58,11 +59,11 @@
     insert into book_info (id, name, author, 
       publish, isbn, introduction,
       language, price, publish_date, 
-      type_id, status)
+      type_id, status, searchId)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
       #{publish,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR},
       #{language,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{publishDate,jdbcType=DATE}, 
-      #{typeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+      #{typeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{searchId, jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yx.po.BookInfo">
     <!--
@@ -105,6 +106,9 @@
       <if test="status != null">
         status,
       </if>
+      <if test="searchId != null">
+        type_id + id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,6 +143,9 @@
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
+      </if>
+      <if test="searchId != null">
+        #{searchId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,6 +187,9 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="searchId != null">
+        searchId = #{searchId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -200,6 +210,7 @@
       publish_date = #{publishDate,jdbcType=DATE},
       type_id = #{typeId,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER}
+      searchId = #{searchId,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -227,6 +238,9 @@
         </if>
         <if test="author!=null">
           and  book_info.author like '%${author}%'
+        </if>
+        <if test="searchId!=null">
+          and  book_info.search_id like '%${searchId}%'
         </if>
       </where>
   </select>
