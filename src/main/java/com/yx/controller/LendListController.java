@@ -231,8 +231,12 @@ public class LendListController {
 
         final Integer c = lendListService.countWillExpireLend(((ReaderInfo) user).getId());
         if (c > 0) {
-            return DataInfo.fail("已借的书籍中有" + c + "本即将在5天内过期或已经过期");
-        } else {
+            return DataInfo.fail("已借的书籍中有" + c + "已经过期");
+        }
+        else if (c <= 0 && c > -7){
+            return DataInfo.fail("已借的书籍中有" + c + "本即将在7天内过期");
+        }
+        else {
             return DataInfo.ok();
         }
     }

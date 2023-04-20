@@ -105,7 +105,7 @@ public class LendListServiceImpl implements LendListService {
 
     @Override
     public Integer countWillExpireLend(Integer rid) {
-        Date date = DateUtils.addDays(new Date(), -25);
+        Date date = DateUtils.addDays(new Date(), -30);
         return lendListMapper.countWillExpireLend(rid, date);
     }
 

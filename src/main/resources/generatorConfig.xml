@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="D:\Maven\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+    <classPathEntry location="F:\JavaTools\maven\apache-maven-3.9.0\maven_repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
     <context id="mysqlTables" targetRuntime="MyBatis3">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
         <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/library?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=Asia/Shanghai"
@@ -14,16 +14,16 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成实体类和数据库表一一对应 -->
-        <javaModelGenerator targetPackage="com.yx.po" targetProject="E:\Projects\JavaProjects\SPM\src\main\java">
+        <javaModelGenerator targetPackage="com.yx.po" targetProject="D:\备份(win10)\SPM\repository\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <!-- 从数据库返回的值被清理前后的空格  -->
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
         <!--映射xml文件及dao接口-->
-        <sqlMapGenerator targetPackage="com.yx.dao" targetProject="E:\Projects\JavaProjects\SPM\src\main\resources">
+        <sqlMapGenerator targetPackage="com.yx.dao" targetProject="D:\备份(win10)\SPM\repository\src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yx.dao" targetProject="E:\Projects\JavaProjects\SPM\src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yx.dao" targetProject="D:\备份(win10)\SPM\repository\src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
