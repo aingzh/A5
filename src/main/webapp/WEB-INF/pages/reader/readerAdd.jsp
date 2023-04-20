@@ -67,6 +67,21 @@
             <input type="text" name="email" autocomplete="off"  class="layui-input">
         </div>
     </div>
+    <%--
+        新增住址和登记日期
+    --%>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">住址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">登记日期</label>
+        <div class="layui-input-block">
+            <input type="text" name="registerDate" id="date2" lay-verify="required"  class="layui-input" autocomplete="off">
+        </div>
+    </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -88,6 +103,14 @@
             trigger:'click'
         });
 
+        /**
+         * 登记日期
+         */
+        //日期
+        laydate.render({
+            elem: '#date2',
+            trigger:'click'
+        });
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {

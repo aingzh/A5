@@ -74,12 +74,13 @@ public class BookInfoController {
     }
 
     /**
-     * 根据id查询book信息
+     * 类型根据id查询(修改)
      */
     @GetMapping("/queryBookInfoById")
-    public DataInfo queryBookInfoById(Integer id){
-        BookInfo bookInfo= bookInfoService.queryBookInfoById(id);
-        return DataInfo.ok("成功",bookInfo);
+    public String queryTypeInfoById(Integer id, Model model) {
+        BookInfo bookInfo = bookInfoService.queryBookInfoById(id);
+        model.addAttribute("info", bookInfo);
+        return "book/updateBook";
     }
 
     /**
