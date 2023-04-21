@@ -142,6 +142,9 @@
                 <c:when test="${sessionScope.type.equals('reader')}">
                     iniUrl: "${pageContext.request.contextPath}/api/init2.json",    // 初始化接口，读者
                 </c:when>
+                <c:when test="${sessionScope.user.adminType == 0}">
+                    iniUrl: "${pageContext.request.contextPath}/api/init3.json",    // 初始化接口，普通管理员
+                </c:when>
                 <c:otherwise>
                     iniUrl: "${pageContext.request.contextPath}/api/init.json",    // 初始化接口，管理
                 </c:otherwise>
