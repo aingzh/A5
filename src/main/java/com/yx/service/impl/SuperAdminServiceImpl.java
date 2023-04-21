@@ -1,3 +1,4 @@
+/*
 package com.yx.service.impl;
 
 import com.github.pagehelper.PageHelper;
@@ -50,3 +51,4 @@ public class SuperAdminServiceImpl implements AdminService {
         return adminMapper.queryUserByNameAndPassword(username, password);
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.yx.controller;
 
 import com.github.pagehelper.PageInfo;
@@ -33,22 +34,26 @@ public class SuperAdminController {
         return DataInfo.ok("成功", pageInfo.getTotal(), pageInfo.getList());
     }
 
-    /**
+    */
+/**
      * 添加页面的跳转
      *
      * @return
-     */
+     *//*
+
     @GetMapping("/adminAdd")
     public String adminAdd() {
         return "admin/adminAdd";
     }
 
-    /**
+    */
+/**
      * 添加提交
      *
      * @param admin
      * @return
-     */
+     *//*
+
     @RequestMapping("/addAdminSubmit")
     @ResponseBody
     public DataInfo addBookSubmit(Admin admin) {
@@ -56,18 +61,22 @@ public class SuperAdminController {
         return DataInfo.ok();
     }
 
-    /**
+    */
+/**
      * 根据id查询
-     */
+     *//*
+
     @GetMapping("/queryAdminById")
     public String queryAdminById(Integer id, Model model) {
         model.addAttribute("id", id);
         return "admin/updateAdmin";
     }
 
-    /**
+    */
+/**
      * 修改提交
-     */
+     *//*
+
     @RequestMapping("/updatePwdSubmit")
     @ResponseBody
     public DataInfo updatePwdSubmit(Integer id, String oldPwd, String newPwd) {
@@ -81,9 +90,11 @@ public class SuperAdminController {
         }
     }
 
-    /**
+    */
+/**
      * 删除
-     */
+     *//*
+
     @RequestMapping("/deleteAdminByIds")
     @ResponseBody
     public DataInfo deleteAdminByIds(String ids) {
@@ -93,3 +104,4 @@ public class SuperAdminController {
     }
 
 }
+*/
