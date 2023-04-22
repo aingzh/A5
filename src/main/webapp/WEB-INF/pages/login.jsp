@@ -55,8 +55,8 @@
                     <select name="type" lay-verify="required">
                         <option value="">请选择用户类型</option>
                         <option value="1">管理员</option>
-                        <option value="2">读者</option>
                         <option value="3">图书馆工作人员</option>
+                        <option value="2">读者</option>
                     </select>
                 </div>
                 <div class="layui-form-item">
