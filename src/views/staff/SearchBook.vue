@@ -1,40 +1,35 @@
 <template>
-  <div style="font-size: xx-large;">
-    此处写用户登陆页面
+  <div class="box">
+    <el-input style="width: 250px" placeholder="请输入ISBN码" v-model="ISBN"></el-input>
   </div>
-  <router-link to="/staff">如登陆后为用户点击此处跳转</router-link>
+    
 </template>
 
 <script lang="ts">
 import {
   ElInput,
-  ElButton,
-  ElSelect,
 } from "element-plus"
 import { defineComponent } from "vue";
 
+
 export default defineComponent({
-  name:"Login",
+  name:"SearchBook",
   data(){
     return{
-      
+      ISBN:"",
     };
   },
 
   methods: {
-    initData(){
-      
-    }
+    
   },
 
   created(){
-    this.initData()
+    
   },
 
   components:{
     ElInput,
-    ElButton,
-    ElSelect
   }
 
 })
@@ -45,6 +40,7 @@ export default defineComponent({
 
 <style scoped>
 .box{
-  padding: 100px
+  padding: 200px;
+  text-align: center
 }
 </style>
