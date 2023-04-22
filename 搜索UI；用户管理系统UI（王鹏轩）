@@ -1,0 +1,569 @@
+搜索
+<template>
+    <div>
+      <div class="box">
+        <div id="inner" class="mt-4">
+            <el-input
+            v-model="searchString"
+            placeholder="请输入书名，作者名，ISBN码"
+            class="input-with-select"
+            >
+            <template #prepend>
+                <el-select v-model="select" placeholder="Select" style="width: 115px">
+                <el-option label="书名" value="1" />
+                <el-option label="作者名" value="2" />
+                <el-option label="ISBN码" value="3" />
+                </el-select>
+            </template>
+            <template #append>
+                <el-button type="primary" >搜索</el-button>
+            </template>
+            </el-input>
+        </div>
+      </div>
+      <div v-for="(item, index) in books" class="book">
+        <book
+          :info="item"
+        />
+      </div>
+    </div>
+  </template>
+  
+  <script lang="ts">
+  import {
+    ElInput,
+  } from "element-plus"
+  import { defineComponent } from "vue";
+  import book from './components/searchbook.vue'
+  
+  export default defineComponent({
+
+    name:"ManageBook",
+    data(){
+      return{
+        searchString:"",
+        select:"书名",
+        search:"",
+        books:[
+          {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            name: "红楼梦",
+            type: "学术界",
+            ISBN: 111111,
+            searchNumber: 11111,
+          }, {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            name: "水浒传",
+            type: "学术界",
+            ISBN: 222222,
+            searchNumber: 22222,
+          }
+        ]
+      };
+    },
+  
+    methods: {
+      
+    },
+  
+    created(){
+      
+    },
+  
+    components:{
+      ElInput,
+      book
+    }
+  
+  })
+  
+  
+  
+  </script>
+  
+  <style scoped>
+  .box{
+    padding: 50px;
+    text-align: center
+  }
+  #inner{
+    width: 500px;
+    right: 0;
+    text-align: right;
+  }
+  .book{
+    margin: 50px;
+    text-align: center;
+    border:1px solid #DCDCDC;
+    height: 200px;
+  }
+  </style>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  收到账户申请通知，审核账户
+  <template>
+  <div class="main" :class="{show: isMain == true,hide: isMain == false}">
+    <el-table :data="tableData" style="width: 100%">
+      <el-table-column fixed prop="date" label="Date" width="200" />
+      <el-table-column prop="name" label="名字" width="200" />
+      <el-table-column prop="uid" label="UID" width="200" />
+      <el-table-column prop="sex" label="性别" width="120" />
+      <el-table-column prop="email" label="邮箱" width="400" />
+      <el-table-column prop="birth" label="出生年月" width="200"/>
+      <el-table-column label="查看" width="120">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="gotoDetail(scope.$index)">详情</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="审核"  width="120">
+        <template #default="scope">
+          <el-button link type="primary" size="small" @click="gotoCheck(scope.$index)">审核</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+  <div class="another" :class="{show: isMain == false,hide: isMain == true}">
+    <div id="detail_window">   
+    <div class="container clearfix">
+          <div class="left">
+            <el-image :src="tableData[select_index].url" class="image"/>
+          </div>
+          <div class="content">
+            <div class="item">姓名：{{ tableData[select_index].name }}</div>
+            <div class="item">性别：{{ tableData[select_index].sex }}</div>
+            <div class="item">UID：{{ tableData[select_index].UID }}</div>
+            <div class="item">邮箱：{{ tableData[select_index].email }}</div>
+            <div class="item">出生年月：{{ tableData[select_index].birth }}</div>
+            <el-button link type="primary" size="small" @click="gotoDetail(select_index)">退出</el-button>
+          </div>
+        </div>
+      </div> 
+   </div>
+
+   <el-dialog
+    v-model="dialogVisible"
+    title="Tips"
+    width="30%"
+    :before-close="handleClose"
+  >
+    <span>是否通过？</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="dialogVisible = false">否定</el-button>
+        <el-button type="primary" @click="dialogVisible = false">
+          通过
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
+</template>
+
+<script lang="ts">
+
+import { defineComponent } from "vue";
+import { ref } from 'vue'
+import { ElMessageBox } from 'element-plus'
+
+const dialogVisible = ref(false)
+
+export default  defineComponent({
+
+    name:"ManageBook",
+    data(){
+      return{
+        dialogVisible,
+
+        //这里面要包括image url地址，这样detail按钮才能展示出来头像
+        tableData: [
+          {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            date: '2016-05-03',
+            name: 'Tom',
+            sex: 'California',
+            UID: 'Los Angeles',
+            email: 'No. 189, Grove St, Los Angeles',
+            birth: 'CA 90036',
+
+          },
+          {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            date: '2016-05-03',
+            name: 'Tom',
+            sex: 'California',
+            UID: 'Los Angeles',
+            email: 'No. 189, Grove St, Los Angeles',
+            birth: 'CA 90036',
+          },
+          {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            date: '2016-05-03',
+            name: 'Tom',
+            sex: 'California',
+            UID: 'Los Angeles',
+            email: 'No. 189, Grove St, Los Angeles',
+            birth: 'CA 90036',
+          }
+        ],
+        select_index:0,
+        isMain:true
+      }
+    },
+    methods:{
+      gotoCheck(index : number){
+        
+        
+      ElMessageBox.confirm('审核通过还是失败？')
+        .then(() => {
+          
+        })
+        .catch(() => {
+         
+        })
+        
+      },
+      handleClose(){
+        this.dialogVisible = false
+      },
+      gotoDetail(index : number){
+        if(this.isMain){
+          this.select_index = index;
+        }
+        this.isMain = !this.isMain 
+      }
+    }
+})
+
+</script>
+<style>
+
+.main{
+  width: 100%;
+  height: 100%;
+}
+
+.hide{
+  z-index:-100;
+ 
+}
+
+.show{
+  z-index: 999;
+}
+
+.another{
+  position: fixed;
+  top:0px;
+  left: 0px;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.dialog-footer button:first-child {
+  margin-right: 10px;
+}
+
+.box{
+    padding: 50px;
+    text-align: center
+  }
+  #inner{
+    width: 500px;
+    right: 0;
+    text-align: right;
+  }
+  .book{
+    margin: 50px;
+    text-align: center;
+    border:1px solid #DCDCDC;
+    height: 200px;
+  }
+  .detail_window{
+    background-color: #ffffff;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+更改删除账户
+<template>
+    <div class="container clearfix">
+     <div class="left">
+       <el-image :src="info.url" class="image"/>
+     </div>
+     <div class="content">
+       <div class="item">姓名：{{ info.name }}</div>
+       <div class="item">性别：{{ info.sex }}</div>
+       <div class="item">UID：{{ info.UID }}</div>
+       <div class="item">邮箱：{{ info.email }}</div>
+       <div class="item">出生年月：{{ info.birth }}</div>
+     </div>
+     <div class="right">
+       <el-col>
+         <el-button type="info" class="button"> 更改用户信息</el-button>
+       </el-col>
+       <el-col>
+         <el-button type="info" class="button"> 删除用户账号</el-button>
+       </el-col>
+     </div>
+   </div>
+   
+   </template>
+   
+   
+   <script lang="ts">
+   import {
+     ElImage,
+     ElCol
+   } from "element-plus"
+   import { defineComponent } from "vue";
+   
+   
+   export default defineComponent({
+     name:"ManageBook",
+     props:['info'],
+     data(){
+       return{
+       };
+     },
+   
+     methods: {
+       
+     },
+   
+     created(){
+       
+     },
+   
+     components:{
+       ElImage,
+       ElCol
+     }
+   
+   })
+   
+   
+   
+   </script>
+   
+   <style scoped>
+   .left {
+     /* 1. 左列容器开启左浮动 */
+     margin:10px;
+     float: left;
+     width: 10%;
+     border:1px solid #DCDCDC;
+     height:180px
+   }
+   
+   .image{
+     width:100%;
+     height:180px
+   }
+   
+   .item{
+     margin:15px;
+   }
+   .content {
+     /* 自适应元素设置 overflow 会创建一个BFC 完成自适应 */
+     overflow: hidden;
+     float: left;
+   }
+   .right {
+     /* 2. 右列容器开启右浮动 */
+     float: right;
+   }
+   .button{
+     margin: 30px;
+   }
+   </style>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   查询账户信息
+   <template>
+    <div>
+      <div class="box">
+        <div id="inner" class="mt-4">
+            <el-input
+            v-model="searchString"
+            placeholder="请输入UID或者用户名称"
+            class="input-with-select"
+            >
+            <template #prepend>
+                <el-select v-model="select" placeholder="Select" style="width: 115px">
+                  <el-option label="UID" value="1" />
+                  <el-option label="用户名称" value="2" />
+                </el-select>
+            </template>
+            <template #append>
+                <el-button type="primary" >搜索</el-button>
+            </template>
+            </el-input>
+        </div>
+      </div>
+      <div v-for="(item, index) in books" class="book">
+        <account
+          :info="item"
+        />
+      </div>
+    </div>
+  </template>
+  
+  <script lang="ts">
+  import {
+    ElInput,
+  } from "element-plus"
+  import { defineComponent } from "vue";
+  import account from '../components/account.vue'
+  
+  export default defineComponent({
+
+    name:"ManageBook",
+    data(){
+      return{
+        searchString:"",
+        select:"UID",
+        search:"",
+        books:[
+          {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            name: "王鹏轩",
+            sex: "男",
+            birth: "2002-11-08",
+            UID:"20009200691",
+            mail:"aoeyuu.con@foxmail.com"
+          }, {
+            url:"https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+            name: "王鹏轩",
+            sex: "男",
+            birth: "2002-11-08",
+            UID:"20009200691",
+            mail:"aoeyuu.con@foxmail.com"
+          }
+        ]
+      };
+    },
+  
+    methods: {
+      
+    },
+  
+    created(){
+      
+    },
+  
+    components:{
+      ElInput,
+      account
+    }
+  
+  })
+  
+  
+  
+  </script>
+  
+  <style scoped>
+  .box{
+    width: 100%;
+    padding: 50px;
+    text-align: center
+  }
+  #inner{
+    width: 500px;
+    right: 0;
+    text-align: right;
+  }
+  .book{
+    margin: 50px;
+    text-align: center;
+    border:1px solid #DCDCDC;
+    height: 200px;
+  }
+  </style>
+  
