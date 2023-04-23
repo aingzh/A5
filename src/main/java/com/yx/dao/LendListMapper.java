@@ -78,4 +78,15 @@ public interface LendListMapper {
      * @return
      */
     Integer countWillExpireLend(@Param("rid") Integer rid, @Param("date") Date date);
+
+    /**
+     * 查询超期图书
+     */
+    List<LendList> queryOverdueList();
+
+    /**
+     * 查询读者借阅图书
+     */
+    List<LendList> queryListByReader(@Param("rid") Integer rid);
+
 }

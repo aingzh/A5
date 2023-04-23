@@ -119,6 +119,7 @@
       adminType = #{adminType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--test-->
   <select id="queryAdminInfoAll" parameterType="com.yx.po.Admin" resultType="com.yx.po.Admin">
     SELECT * from admin
     <where>

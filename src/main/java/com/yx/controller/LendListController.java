@@ -8,8 +8,14 @@ import com.yx.po.ReaderInfo;
 import com.yx.service.BookInfoService;
 import com.yx.service.LendListService;
 import com.yx.service.ReaderInfoService;
+import com.yx.utils.Constants;
 import com.yx.utils.DataInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +28,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 @Controller
 public class LendListController {
@@ -32,6 +39,18 @@ public class LendListController {
 
     @Autowired
     private BookInfoService bookInfoService;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
+
+    @Value("${mail.lend.notify.from}")
+    private String form;
+
+    @Value("${mail.lend.notify.subject}")
+    private String subject;
+
+    @Value("${mail.lend.notify.content}")
+    private String content;
 
     @GetMapping("/lendListIndex")
     public String lendListIndex() {
@@ -73,7 +92,7 @@ public class LendListController {
     @ResponseBody
     @RequestMapping("/lendListAllOfReader")
     public DataInfo lendListAllOfReader(HttpSession session, Integer backType, String name, Integer status,
-                                @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
+                                        @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
         ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
         return lendListAll(backType, readerInfo.getReaderNumber(), name, status, page, limit);
     }
@@ -105,39 +124,39 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/addLend")
-    public DataInfo addLend(String readerNumber, String ids) {
+    public DataInfo addLend(String readerNumber,String ids){
         //获取图书id的集合
-        List<String> list = Arrays.asList(ids.split(","));
+        List<String> list= Arrays.asList(ids.split(","));
+        if(list.size() > Constants.LEND_MAX || list.isEmpty() ) {
+            return DataInfo.fail(String.format("只能借1~%s本书", Constants.LEND_MAX));
+        }
+
         //判断卡号是否存在
-        ReaderInfo reader = new ReaderInfo();
+        ReaderInfo reader=new ReaderInfo();
         reader.setReaderNumber(readerNumber);
-        PageInfo<ReaderInfo> pageInfo = readerService.queryAllReaderInfo(reader, 1, 1);
-        if (pageInfo.getList().size() == 0) {
+        PageInfo<ReaderInfo> pageInfo=readerService.queryAllReaderInfo(reader,1,1);
+        if(pageInfo.getList().size()==0){
             return DataInfo.fail("卡号信息不存在");
-        } else {
-            ReaderInfo readerCard2 = pageInfo.getList().get(0);
-            //可借书
-            for (String bid : list) {
-                LendList lendList = new LendList();
-                lendList.setReaderId(readerCard2.getId());//读者id
-                lendList.setBookId(Integer.valueOf(bid));//书的id
-                lendList.setBackType(-1);
-
-                final PageInfo<LendList> lendListPageInfo = lendListService.queryLendListAll(lendList, 1, 100);
-                if (!lendListPageInfo.getList().isEmpty()) {
-                    return DataInfo.fail("书籍" + bookInfoService.queryBookInfoById(Integer.valueOf(bid)).getName() + "已被借出");
+        } else{
+            ReaderInfo readerCard2=pageInfo.getList().get(0);
+            List<LendList> lendLists = lendListService.queryListByReader(readerCard2.getId());
+            if(list.size() > (Constants.LEND_MAX - lendLists.size())) {
+                return DataInfo.fail(String.format("只能再借%s本书", (Constants.LEND_MAX - lendLists.size())));
+            } else {
+                //可借书
+                for(String bid:list) {
+                    LendList lendList = new LendList();
+                    lendList.setReaderId(readerCard2.getId());//读者id
+                    lendList.setBookId(Integer.valueOf(bid));//书的id
+                    lendList.setLendDate(new Date());
+                    lendListService.addLendListSubmit(lendList);
+                    //更变书的状态
+                    BookInfo info = bookInfoService.queryBookInfoById(Integer.valueOf(bid));
+                    //设置书的状态
+                    info.setStatus(1);
+                    bookInfoService.updateBookSubmit(info);
                 }
-
-                lendList.setBackType(null);
-                lendList.setLendDate(new Date());
-                lendListService.addLendListSubmit(lendList);
-                //更变书的状态
-                BookInfo info = bookInfoService.queryBookInfoById(Integer.valueOf(bid));
-                //设置书的状态
-                info.setStatus(1);
-                bookInfoService.updateBookSubmit(info);
             }
-
         }
 
         return DataInfo.ok();
@@ -240,5 +259,68 @@ public class LendListController {
             return DataInfo.ok();
         }
     }
+
+    /**
+     * 提醒归还图书
+     * @param request
+     * @param model
+     *
+     * @return
+     */
+    @RequestMapping("/notifyBackLend")
+    @ResponseBody
+    public DataInfo notifyBackLend(HttpServletRequest request,Model model){
+        List<LendList> list = lendListService.queryOverdueList();
+        new Thread() {
+            @Override
+            public void run() {
+                for (LendList lendList : list) {
+                    ReaderInfo readerInfo = lendList.getReaderInfo();
+                    if(readerInfo != null) {
+                        String to = readerInfo.getEmail();
+                        if(to != null) {
+                            SimpleMailMessage email = new SimpleMailMessage();
+                            email.setFrom(form);
+                            email.setTo(to);
+                            email.setSubject(subject);
+                            email.setText(content);
+
+                            try {
+                                javaMailSender.send(email);
+                                System.out.println(to);
+                                // System.out.println(lendList.getBookInfo().getName());
+                            } catch (MailException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        }.start();
+        return DataInfo.ok("成功", null);
+    }
+
+    /**
+     public static void main(String[] args) {
+     Properties properties = new Properties();
+     properties.setProperty("mail.smtp.auth", "true");
+     JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+     javaMailSender.setHost("smtp.163.com");
+     javaMailSender.setPort(25);
+     javaMailSender.setDefaultEncoding("UTF-8");
+     javaMailSender.setUsername("overdue_reminder1@163.com");
+     javaMailSender.setPassword("YGATFFMLURWTTSAO");
+     javaMailSender.setJavaMailProperties(properties);
+
+     SimpleMailMessage email = new SimpleMailMessage();
+     email.setFrom("overdue_reminder1@163.com");
+     email.setTo("overdue_reminder1@163.com");
+     email.setSubject("Test");
+     email.setText("Test");
+
+     // sends the e-mail
+     javaMailSender.send(email);
+     }
+     */
 
 }
