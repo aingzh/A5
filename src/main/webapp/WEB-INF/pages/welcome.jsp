@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <title>Home page</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -44,7 +44,7 @@
             <div class="layui-col-md4">
 
                 <div class="layui-card">
-                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>系统公告</div>
+                    <div class="layui-card-header"><i class="fa fa-bullhorn icon icon-tip"></i>System Announcement</div>
                         <div class="layui-card-body layui-text">
                             <c:forEach var="notice" items="${noticeList}">
                                 <div class="layuimini-notice">
@@ -83,7 +83,7 @@
                 '</div>\n';
             parent.layer.open({
                 type: 1,
-                title: '系统公告'+'<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">'+noticeTime+'</span>',
+                title: 'System Announcement'+'<span style="float: right;right: 1px;font-size: 12px;color: #b1b3b9;margin-top: 1px">'+noticeTime+'</span>',
                 area: '300px;',
                 shade: 0.8,
                 id: 'layuimini-notice',

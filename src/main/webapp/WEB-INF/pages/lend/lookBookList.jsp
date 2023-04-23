@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>时间线查询</title>
+    <title>Timeline query</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>借书时间线</legend>
+    <legend>Time line of borrowing books</legend>
 </fieldset>
 <ul class="layui-timeline">
 <c:forEach var="lend" items="${info}" varStatus="status">
@@ -24,12 +24,12 @@
         <div class="layui-timeline-content layui-text">
             <div class="layui-timeline-title">
                 <fmt:formatDate value="${lend.lendDate}" pattern="yyyy年MM月dd日HH点mm分ss秒" /> <br/>
-                <span style="color: red"> ${lend.readerInfo.realName}</span> 借走 <span style="color: crimson"><<${lend.bookInfo.name}>></span><br/>
+                <span style="color: red"> ${lend.readerInfo.realName}</span> borrow <span style="color: crimson"><<${lend.bookInfo.name}>></span><br/>
                 <c:if test="${lend.backDate == null}">
-                     未归还
+                    unreturned
                 </c:if>
                 <c:if test="${lend.backDate != null}">
-                    <fmt:formatDate value="${lend.backDate}" pattern="yyyy年MM月dd日HH点mm分ss秒" /> <span style="color: green">归还</span>,
+                    <fmt:formatDate value="${lend.backDate}" pattern="yyyy年MM月dd日HH点mm分ss秒" /> <span style="color: green">return</span>,
                 </c:if>
             </div>
         </div>

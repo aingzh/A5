@@ -1,52 +1,40 @@
 {
   "homeInfo": {
-    "title": "首页",
+    "title": "Home",
     "href": "welcome"
   },
   "logoInfo": {
-    "title": "图书管理",
+    "title": "Book Management",
     "image": "images/favicon.ico",
     "href": ""
   },
   "menuInfo": [
     {
-      "title": "功能管理",
+      "title": "Function Management",
       "icon": "fa fa-bars",
       "href": "",
       "target": "_self",
       "child": [
         {
-          "title": "借阅管理",
-          "href": "lendListIndex",
-          "icon": "fa fa-window-maximize",
-          "target": "_self"
-        },
-        {
-          "title": "图书管理",
-          "href": "bookIndex",
-          "icon": "fa fa-book",
-          "target": "_self"
-        },
-        {
-          "title": "读者管理",
+          "title": "Reader Management",
           "href": "readerIndex",
           "icon": "fa fa-credit-card",
           "target": "_self"
         },
         {
-          "title": "员工管理",
+          "title": "Employee Management",
           "href": "workerIndex",
           "icon": "fa fa-user",
           "target": "_self"
         },
         {
-          "title": "类型管理",
+          "title": "Type Management",
           "href": "typeIndex",
           "icon": "fa fa-file-text",
           "target": "_self"
         },
         {
-          "title": "公告管理",
+          "title": "Notice Management",
           "href": "noticeIndexOfBack",
           "icon": "fa fa-bell",
           "target": "_self"
@@ -55,14 +43,14 @@
     },
 
     {
-      "title": "统计分析",
+      "title": "Statistics Analysis",
       "icon": "fa fa-bar-chart",
       "href": "",
       "target": "_self",
       "child": [
 
         {
-          "title": "统计分析",
+          "title": "Statistics Analysis",
           "href": "statisticIndex",
           "icon": "fa fa-superpowers",
           "target": "_self"

@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>异常还书</title>
+    <title>Abnormal return</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,19 +23,19 @@
     <input type="hidden" name="id"  value="${id}"/>
     <input type="hidden" name="bookId"  value="${bid}"/>
     <div class="layui-form-item">
-        <label class="layui-form-label required">异常类型</label>
+        <label class="layui-form-label required">Exception type</label>
         <div class="layui-input-block">
             <select name="backType" id="backType" lay-verify="required">
-                <option value="">请选择</option>
+                <option value="">Please select</option>
 <%--                <option value="0">正常还书</option>--%>
-                <option value="1">延迟还书</option>
-                <option value="2">破损还书</option>
-                <option value="3">丢失</option>
+                <option value="1">Late return</option>
+                <option value="2">Damaged return</option>
+                <option value="3">Lose</option>
             </select>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">异常备注</label>
+        <label class="layui-form-label">Abnormal remarks</label>
         <div class="layui-input-block">
             <textarea name="remarks" class="layui-textarea" > </textarea>
         </div>
@@ -43,7 +43,7 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认还书</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">Confirmation of return</button>
         </div>
     </div>
 </div>
@@ -66,7 +66,7 @@
                 // data:JSON.stringify(datas),
                 success:function(result){
                     if(result.code==0){//如果成功
-                        layer.msg('还书成功',{
+                        layer.msg('Successful book return',{
                             icon:6,
                             time:500
                         },function(){
@@ -75,7 +75,7 @@
                             parent.layer.close(iframeIndex);
                         })
                     }else{
-                         layer.msg("还书失败");
+                         layer.msg("Book return failure");
                     }
                 }
             })

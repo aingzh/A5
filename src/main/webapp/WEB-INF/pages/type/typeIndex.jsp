@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>类型管理</title>
+    <title>Type management</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,26 +19,26 @@
     <div class="layuimini-main">
 
         <div class="demoTable">
-            类型名称：
+            Type Name:
             <div class="layui-inline">
                 <input class="layui-input" name="name" id="name" autocomplete="off">
             </div>
-            <button class="layui-btn" data-type="reload">搜索</button>
+            <button class="layui-btn" data-type="reload">Search</button>
         </div>
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> Add </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> Delete </button>
             </div>
         </script>
 
-        <!--表单，查询出的数据在这里显示-->
+        <!--Form, data queried will be displayed here-->
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">Edit</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Delete</a>
         </script>
 
     </div>
@@ -55,16 +55,16 @@
             url: '${pageContext.request.contextPath}/typeAll',//查询类型数据
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
+                title: 'Tips',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
             cols: [[
                 {type: "checkbox", width: 50},
                 //{field: 'id', width: 100, title: 'ID', sort: true},
-                {field: 'name', width: 180, title: '类型名称'},
-                {field: 'remarks', width: 280, title: '备注'},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {field: 'name', width: 180, title: 'Type Name'},
+                {field: 'remarks', width: 280, title: 'Remarks'},
+                {title: 'Operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,  <!--默认显示15条-->
@@ -101,7 +101,7 @@
             var data=obj.data;
             if (obj.event === 'edit') {  // 监听修改操作
                 var index = layer.open({
-                    title: '修改图书类型',
+                    title: 'Modify book type',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -113,7 +113,7 @@
                     layer.full(index);
                 });
             } else if (obj.event === 'delete') {  // 监听删除操作
-                layer.confirm('确定是否删除', function (index) {
+                layer.confirm('Are you sure to delete?', function (index) {
                     //调用删除功能
                     deleteInfoByIds(data.id,index);
                     layer.close(index);
@@ -150,7 +150,7 @@
                 data: {ids: ids},
                 success: function (result) {
                     if (result.code == 0) {//如果成功
-                        layer.msg('删除成功', {
+                        layer.msg('Deleted successfully', {
                             icon: 6,
                             time: 500
                         }, function () {
@@ -159,7 +159,7 @@
                             parent.layer.close(iframeIndex);
                         });
                     } else {
-                        layer.msg("删除失败");
+                        layer.msg("Deletion failure");
                     }
                 }
             })
@@ -171,7 +171,7 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
-                    title: '添加类型',
+                    title: 'Add type',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -192,11 +192,11 @@
                 var checkStatus=table.checkStatus(obj.config.id);
                 var data=checkStatus.data;
                 if(data.length==0){//如果没有选中信息
-                    layer.msg("请选择要删除的记录信息");
+                    layer.msg("Select the record information you want to delete");
                 }else{
                     //获取记录信息的id集合,拼接的ids
                     var ids=getCheackId(data);
-                    layer.confirm('确定是否删除', function (index) {
+                    layer.confirm('Are you sure to delete?', function (index) {
                         //调用删除功能
                         deleteInfoByIds(ids,index);
                         layer.close(index);
