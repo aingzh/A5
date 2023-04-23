@@ -120,7 +120,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="queryAdminInfoAll" parameterType="com.yx.po.Admin" resultType="com.yx.po.Admin">
-    SELECT * from `admin`
+    SELECT * from admin
     <where>
       <if test="username!=null">
         and username like '%${username}%'
@@ -132,6 +132,6 @@
   </select>
 
   <select id="queryUserByNameAndPassword" resultType="com.yx.po.Admin">
-    select * from `admin` where username=#{username} and password=#{password}
+    select * from admin where username=#{username} and password=#{password}
   </select>
 </mapper>
