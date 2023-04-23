@@ -15,4 +15,6 @@ public class Constants {
     public final static int STATUS_1 = 1;//禁用状态
 
     public final static String CACHE_NAME = "KACache";
+
+    public final static int LEND_MAX = 5;
 }

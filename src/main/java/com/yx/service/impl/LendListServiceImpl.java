@@ -104,6 +104,17 @@ public class LendListServiceImpl implements LendListService {
     }
 
     @Override
+    public List<LendList> queryOverdueList() {
+
+        return lendListMapper.queryOverdueList();
+    }
+
+    @Override
+    public List<LendList> queryListByReader(Integer rid) {
+        return lendListMapper.queryListByReader(rid);
+    }
+
+    @Override
     public Integer countWillExpireLend(Integer rid) {
         Date date = DateUtils.addDays(new Date(), -30);
         return lendListMapper.countWillExpireLend(rid, date);
