@@ -24,7 +24,7 @@
         <div class="layui-timeline-content layui-text">
             <div class="layui-timeline-title">
                 <fmt:formatDate value="${lend.lendDate}" pattern="yyyy-MM-dd HH:mm:ss" /> <br/>
-                <span style="color: red"> ${lend.readerInfo.realName}</span> borrow <span style="color: crimson">《${lend.bookInfo.name}》</span><br/>
+                <span style="color: red"> ${lend.readerInfo.realName}</span> borrow <span style="color: crimson"><<${lend.bookInfo.name}>></span><br/>
                 <c:if test="${lend.backDate == null}">
                     unreturned
                 </c:if>
