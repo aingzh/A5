@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">Avatar</label>
+        <label class="layui-form-label<%-- required--%>">Avatar</label>
         <div class="layui-input-block">
             <input type="text" name="avatar" value="${info.avatar}" autocomplete="off" class="layui-input">
         </div>
@@ -46,16 +46,16 @@
         Add Address
     --%>
     <div class="layui-form-item">
-        <label class="layui-form-label required">Address</label>
+        <label class="layui-form-label<%-- required--%>">Address</label>
         <div class="layui-input-block">
             <input type="text" name="address" value="${info.address}" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Real Name</label>
+        <label class="layui-form-label<%-- required--%>">Real Name</label>
         <div class="layui-input-block">
-            <input type="text" name="realName" lay-reqtext="Real Name cannot be empty" value="${info.realName}"
+            <input type="text" name="realName" <%--lay-reqtext="Real Name cannot be empty"--%> value="${info.realName}"
                    autocomplete="off" class="layui-input">
         </div>
     </div>
@@ -69,21 +69,21 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Date of Birth</label>
+        <label class="layui-form-label<%-- required--%>">Date of Birth</label>
         <div class="layui-input-block">
-            <input type="text" name="birthday" id="date" lay-verify="required"  value="<fmt:formatDate value='${info.birthday}' pattern='yyyy-MM-dd'/>" class="layui-input" autocomplete="off">
+            <input type="text" name="birthday" id="date" <%--lay-verify="required"--%>  value="<fmt:formatDate value='${info.birthday}' pattern='yyyy-MM-dd'/>" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">Contact Number</label>
         <div class="layui-input-block">
-            <input type="text" name="tel" lay-verify="required"  class="layui-input" value="${info.tel}" autocomplete="off">
+            <input type="text" name="tel" lay-verify="required" lay-reqtext="Contact information cannot be empty"  class="layui-input" value="${info.tel}" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Email Address</label>
+        <label class="layui-form-label<%-- required--%>">Email Address</label>
         <div class="layui-input-block">
             <input type="text" name="email" autocomplete="off" value="${info.email}"  class="layui-input">
         </div>
