@@ -44,7 +44,7 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-username"></label>
-                    <input type="text" name="username" lay-verify="required" placeholder="Username" autocomplete="off" class="layui-input" >
+                    <input type="text" name="input" lay-verify="required" placeholder="Username" autocomplete="off" class="layui-input" >
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-icon layui-icon-password"></label>
