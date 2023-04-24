@@ -33,9 +33,9 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Real Name</label>
+        <label class="layui-form-label<%-- required--%>">Real Name</label>
         <div class="layui-input-block">
-            <input type="text" name="realName" lay-verify="required" lay-reqtext="Real name cannot be empty" placeholder="Please enter real name" autocomplete="off" class="layui-input">
+            <input type="text" name="realName" <%--lay-verify="required" lay-reqtext="Real name cannot be empty"--%> placeholder="Please enter real name" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -48,38 +48,38 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Date of Birth</label>
+        <label class="layui-form-label<%-- required--%>">Date of Birth</label>
         <div class="layui-input-block">
-            <input type="text" name="birthday" id="date" lay-verify="required"  class="layui-input" autocomplete="off">
+            <input type="text" name="birthday" id="date" <%--lay-verify="required"--%> placeholder="Please enter reader's birthday" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">Contact Information</label>
         <div class="layui-input-block">
-            <input type="text" name="tel" lay-verify="required"  class="layui-input" autocomplete="off">
+            <input type="text" name="tel" lay-verify="required" lay-reqtext="Contact information cannot be empty" placeholder="Please enter reader's phone number" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">Email Address</label>
+        <label class="layui-form-label<%-- required--%>">Email Address</label>
         <div class="layui-input-block">
-            <input type="text" name="email" autocomplete="off"  class="layui-input">
+            <input type="text" name="email" autocomplete="off" placeholder="Please enter reader's email" class="layui-input">
         </div>
     </div>
     <%--
         Add address and registration date
     --%>
     <div class="layui-form-item">
-        <label class="layui-form-label required">Address</label>
+        <label class="layui-form-label<%-- required--%>">Address</label>
         <div class="layui-input-block">
-            <input type="text" name="address" autocomplete="off" class="layui-input">
+            <input type="text" name="address" autocomplete="off" placeholder="Please enter reader's address" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label required">Registration Date</label>
         <div class="layui-input-block">
-            <input type="text" name="registerDate" id="date2" lay-verify="required"  class="layui-input" autocomplete="off">
+            <input type="text" name="registerDate" id="date2" lay-verify="required" lay-reqtext="Register date cannot be empty" placeholder="Please enter reader's register date" class="layui-input" autocomplete="off">
         </div>
     </div>
 

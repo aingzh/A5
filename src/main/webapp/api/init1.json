@@ -16,6 +16,12 @@
       "target": "_self",
       "child": [
         {
+          "title": "Reader Management",
+          "href": "readerIndex",
+          "icon": "fa fa-credit-card",
+          "target": "_self"
+        },
+        {
           "title": "Borrow Management",
           "href": "lendListIndex",
           "icon": "fa fa-window-maximize",

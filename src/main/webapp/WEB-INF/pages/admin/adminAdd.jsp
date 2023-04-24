@@ -34,8 +34,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">Administrator type</label>
         <div class="layui-input-block">
-            <select class="layui-input" name="adminType" id="adminType">
-                <option value=""></option>
+            <select class="layui-input" name="adminType" id="adminType" lay-verify="required" lay-reqtext="The administrator type cannot be empty">
+                <option value="">Please select administrator type</option>
                 <option value="0">General administrator</option>
                 <option value="1">Senior administrator</option>
             </select>
