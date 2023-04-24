@@ -86,7 +86,7 @@ public class LendListController {
         info.setBookInfo(book);
         //分页查询所有的记录信息
         PageInfo pageInfo=lendListService.queryLendListAll(info,page,limit);
-        return DataInfo.ok("ok",pageInfo.getTotal(),pageInfo.getList());
+        return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());
     }
 
     @ResponseBody
@@ -128,7 +128,7 @@ public class LendListController {
         //获取图书id的集合
         List<String> list= Arrays.asList(ids.split(","));
         if(list.size() > Constants.LEND_MAX || list.isEmpty() ) {
-            return DataInfo.fail(String.format("只能借1~%s本书", Constants.LEND_MAX));
+            return DataInfo.fail(String.format("Only 1~%s can be borrowed for this book", Constants.LEND_MAX));
         }
 
         //判断卡号是否存在
@@ -136,12 +136,12 @@ public class LendListController {
         reader.setReaderNumber(readerNumber);
         PageInfo<ReaderInfo> pageInfo=readerService.queryAllReaderInfo(reader,1,1);
         if(pageInfo.getList().size()==0){
-            return DataInfo.fail("卡号信息不存在");
+            return DataInfo.fail("Card number information does not exist");
         } else{
             ReaderInfo readerCard2=pageInfo.getList().get(0);
             List<LendList> lendLists = lendListService.queryListByReader(readerCard2.getId());
             if(list.size() > (Constants.LEND_MAX - lendLists.size())) {
-                return DataInfo.fail(String.format("只能再借%s本书", (Constants.LEND_MAX - lendLists.size())));
+                return DataInfo.fail(String.format("Only %s book can be borrowed again", (Constants.LEND_MAX - lendLists.size())));
             } else {
                 //可借书
                 for(String bid:list) {
@@ -250,10 +250,10 @@ public class LendListController {
 
         final Integer c = lendListService.countWillExpireLend(((ReaderInfo) user).getId());
         if (c > 0) {
-            return DataInfo.fail("已借的书籍中有" + c + "已经过期");
+            return DataInfo.fail(c + " of the borrowed books have expired");
         }
         else if (c <= 0 && c > -7){
-            return DataInfo.fail("已借的书籍中有" + c + "本即将在7天内过期");
+            return DataInfo.fail(c + " of the books borrowed are about to pass within 7 days");
         }
         else {
             return DataInfo.ok();
@@ -297,7 +297,7 @@ public class LendListController {
                 }
             }
         }.start();
-        return DataInfo.ok("成功", null);
+        return DataInfo.ok("success", null);
     }
 
     /**

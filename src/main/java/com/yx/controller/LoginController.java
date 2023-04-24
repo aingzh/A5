@@ -64,7 +64,7 @@ public class LoginController {
             response.getOutputStream().write(verifyCode.getImgBytes());
             response.getOutputStream().flush();
         } catch (IOException e) {
-            System.out.println("异常处理");
+            System.out.println("Exception handling");
         }
     }
 
@@ -85,7 +85,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         String realCode = (String) session.getAttribute("VerifyCode");
         if (!realCode.toLowerCase().equals(code.toLowerCase())) {
-            model.addAttribute("msg", "验证码不正确");
+            model.addAttribute("msg", "The captcha is incorrect");
             return "login";
         } else {
             //验证码正确则判断用户名和密码
@@ -93,7 +93,7 @@ public class LoginController {
                 //工号和密码是否正确
                 Admin admin = adminService.queryUserByNameAndPassword(username, password);
                 if (admin == null) {//该用户不存在
-                    model.addAttribute("msg", "工号或密码错误");
+                    model.addAttribute("msg", "The workernumber or password is incorrect");
                     return "login";
                 }
                 session.setAttribute("user", admin);
@@ -103,13 +103,13 @@ public class LoginController {
                 if (email == null) {
                     readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
                     if (readerInfo == null) {
-                        model.addAttribute("msg", "用户名或密码错误");
+                        model.addAttribute("msg", "The username or password is incorrect");
                         return "login";
                     }
                 }else {
                     readerInfo = readerService.queryUserInfoByEmailAndPassword(email, password);
                     if (readerInfo == null) {
-                        model.addAttribute("msg", "邮箱或密码错误");
+                        model.addAttribute("msg", "The email or password is incorrect");
                         return "login";
                     }
                 }
@@ -120,19 +120,19 @@ public class LoginController {
                 if (workerNumber == null) {
                     workerInfo = workerService.queryUserInfoByNameAndPassword(username, password);
                     if (workerInfo == null) {
-                        model.addAttribute("msg", "用户名或密码错误");
+                        model.addAttribute("msg", "The username or password is incorrect");
                         return "login";
                     } else if (workerInfo.getStatus() == 0){
-                        model.addAttribute("msg", "该图书馆管理人员已离职");
+                        model.addAttribute("msg", "The library administrator has left");
                         return "login";
                     }
                 } else {
                     workerInfo = workerService.queryUserInfoByWorkerNumberAndPassword(workerNumber, password);
                     if (workerInfo == null) {
-                        model.addAttribute("msg", "工号或密码错误");
+                        model.addAttribute("msg", "The workernumber or password is incorrect");
                         return "login";
                     } else if (workerInfo.getStatus() == 0) {
-                        model.addAttribute("msg", "该图书馆管理人员已离职");
+                        model.addAttribute("msg", "The library administrator has left");
                         return "login";
                     }
                 }
