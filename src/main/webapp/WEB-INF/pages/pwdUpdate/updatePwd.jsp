@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>修改密码</title>
+    <title>Change password</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,28 +21,28 @@
 
         <div class="layui-form layuimini-form">
             <div class="layui-form-item">
-                <label class="layui-form-label required">旧的密码</label>
+                <label class="layui-form-label required">Old password</label>
                 <div class="layui-input-block">
-                    <input type="password" name="oldPwd" id="oldPwd" lay-verify="required" lay-reqtext="旧密码不能为空" placeholder="请输入旧的密码"  value="" class="layui-input">
+                    <input type="password" name="oldPwd" id="oldPwd" lay-verify="required" lay-reqtext="The old password cannot be empty" placeholder="Please enter the old password"  value="" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <label class="layui-form-label required">新的密码</label>
+                <label class="layui-form-label required">New password</label>
                 <div class="layui-input-block">
-                    <input type="password" name="newPwd" id="newPwd" lay-verify="required" lay-reqtext="新密码不能为空" placeholder="请输入新的密码"  value="" class="layui-input">
+                    <input type="password" name="newPwd" id="newPwd" lay-verify="required" lay-reqtext="The new password cannot be empty" placeholder="Please enter a new password"  value="" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label required">确认密码</label>
+                <label class="layui-form-label required">Confirm password</label>
                 <div class="layui-input-block">
-                    <input type="password" name="againPwd" id="againPwd" lay-verify="required" lay-reqtext="密码不能为空" placeholder="请输入新的密码"  value="" class="layui-input">
+                    <input type="password" name="againPwd" id="againPwd" lay-verify="required" lay-reqtext="The password cannot be empty" placeholder="Please enter a new password"  value="" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">Confirm save</button>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
         form.on('submit(saveBtn)', function (data) {
             var datas=data.field;//form单中的数据信息
             if (datas.newPwd != datas.againPwd){
-                layer.msg("两次输入的新密码不一致,请重新输入")
+                layer.msg("The two new passwords are different. Please try again")
             }else{
                 //向后台发送数据提交添加
                 $.ajax({
@@ -72,7 +72,7 @@
                     },
                     success:function(result){
                         if(result.code==0){//如果成功
-                            layer.msg("修改成功",{
+                            layer.msg("Modified successfully",{
                                 icon:6,
                                 time:500
                             },function(){

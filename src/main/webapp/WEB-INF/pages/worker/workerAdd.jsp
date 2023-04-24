@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加员工</title>
+    <title>Add staff</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -20,83 +20,83 @@
 <body>
 <div class="layui-form layuimini-form">
     <div class="layui-form-item">
-        <label class="layui-form-label required">员工卡号</label>
+        <label class="layui-form-label required">Employee Card Number</label>
         <div class="layui-input-block">
-            <input type="text" name="workerNumber" lay-verify="required" lay-reqtext="员工卡号不能为空" placeholder="请输入员工卡号" autocomplete="off" class="layui-input">
+            <input type="text" name="workerNumber" lay-verify="required" lay-reqtext="Employee Card Number cannot be empty" placeholder="Please enter employee card number" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">用户名</label>
+        <label class="layui-form-label required">Username</label>
         <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="required" lay-reqtext="用户名不能为空" placeholder="请输入用户名" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label required">真实姓名</label>
-        <div class="layui-input-block">
-            <input type="text" name="realName" lay-verify="required" lay-reqtext="真实姓名不能为空" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
+            <input type="text" name="username" lay-verify="required" lay-reqtext="Username cannot be empty" placeholder="Please enter username" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">性别</label>
+        <label class="layui-form-label required">Real Name</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" value="男" title="男" checked="checked"/>
-            <input type="radio" name="sex" value="女" title="女" />
+            <input type="text" name="realName" lay-verify="required" lay-reqtext="Real Name cannot be empty" placeholder="Please enter real name" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">出生日期</label>
+        <label class="layui-form-label required">Gender</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="male" title="male" checked="checked"/>
+            <input type="radio" name="sex" value="female" title="female" />
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">Date of Birth</label>
         <div class="layui-input-block">
             <input type="text" name="birthday" id="date" lay-verify="required"  class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">联系方式</label>
+        <label class="layui-form-label required">Contact Information</label>
         <div class="layui-input-block">
             <input type="text" name="tel" lay-verify="required"  class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">邮箱地址</label>
+        <label class="layui-form-label required">Email Address</label>
         <div class="layui-input-block">
             <input type="text" name="email" autocomplete="off"  class="layui-input">
         </div>
     </div>
 
     <%--
-        新增住址和登记日期
+        Add Address and Registration Date
     --%>
     <div class="layui-form-item">
-        <label class="layui-form-label required">住址</label>
+        <label class="layui-form-label required">Address</label>
         <div class="layui-input-block">
             <input type="text" name="address" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">登记日期</label>
+        <label class="layui-form-label required">Registration Date</label>
         <div class="layui-input-block">
             <input type="text" name="registerDate" id="date2" lay-verify="required"  class="layui-input" autocomplete="off">
         </div>
     </div>
     <%--
-        新增是否离职
+        Add Whether to Resign
     --%>
     <div class="layui-form-item">
-        <label class="layui-form-label required">是否离职</label>
+        <label class="layui-form-label required">Whether to Resign</label>
         <div class="layui-input-block">
-            <input type="radio" name="status"  value=0 title="离职"  ${"0" eq info.status ?"checked='checked'":''} />
-            <input type="radio" name="status"  value=1 title="在职"  ${"1" eq info.status ?"checked='checked'":''} />
+            <input type="radio" name="status"  value=0 title="Resigned"  ${"0" eq info.status ?"checked='checked'":''} />
+            <input type="radio" name="status"  value=1 title="Employed"  ${"1" eq info.status ?"checked='checked'":''} />
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认保存</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">Confirm Save</button>
         </div>
     </div>
 </div>
@@ -136,7 +136,7 @@
                 data:JSON.stringify(datas),
                 success:function(result){
                     if(result.code==0){//如果成功
-                        layer.msg('添加成功',{
+                        layer.msg('Add successfully',{
                             icon:6,
                             time:500
                         },function(){
@@ -145,7 +145,7 @@
                             parent.layer.close(iframeIndex);
                         })
                     }else{
-                        layer.msg("添加失败");
+                        layer.msg("Add failure");
                     }
                 }
             })
