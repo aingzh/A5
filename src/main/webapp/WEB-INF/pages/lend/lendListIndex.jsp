@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>借阅管理</title>
+    <title>Lending management</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -20,42 +20,42 @@
         <div class="layuimini-main">
             <div class="demoTable">
                 <div class="layui-form-item layui-form ">
-                    借书卡
+                    Library card
                     <div class="layui-inline">
                         <input class="layui-input" name="readerNumber" id="readerNumber" autocomplete="off">
                     </div>
-                    图书名称
+                    Book name
                     <div class="layui-inline">
                         <input class="layui-input" name="name" id="name" autocomplete="off">
                     </div>
-                    归还类型
+                    Return type
                     <div class="layui-inline">
                         <select class="layui-input" name="type" id="backType">
                             <option value=""></option>
-                            <option value="0">正常还书</option>
-                            <option value="1">延迟还书</option>
-                            <option value="2">破损还书</option>
-                            <option value="4">超时还书</option>
-                            <option value="3">丢失</option>
+                            <option value="0">Return normally</option>
+                            <option value="1">Delayed return</option>
+                            <option value="2">Damaged return</option>
+                            <option value="4">Overdue return</option>
+                            <option value="3">Lost</option>
                         </select>
                     </div>
-                   图书类型
+                    Book Type
                     <div class="layui-inline">
                         <select class="layui-input" name="status" id="status">
                             <option value=""></option>
-                            <option value="0">未借出</option>
-                            <option value="1">在借中</option>
+                            <option value="0">Not Borrowed</option>
+                            <option value="1">Borrowed</option>
                         </select>
                     </div>
-                    <button class="layui-btn" data-type="reload">搜索</button>
+                    <button class="layui-btn" data-type="reload">search</button>
                 </div>
             </div>
         </div>
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 借书 </button>
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="back"> 还书 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> Borrow </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="back"> Return </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> Delete </button>
             </div>
         </script>
 
@@ -63,10 +63,10 @@
 
         <script type="text/html" id="currentTableBar">
             {{# if(d.backDate==null){ }}
-                <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">异常还书</a>
-                <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit">Abnormal Return</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Delete</a>
             {{# }else{ }}
-               <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Delete</a>
             {{# } }}
         </script>
 
@@ -84,7 +84,7 @@
             url: '${pageContext.request.contextPath}/lendListAll',//查询借阅图书记录
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
+                title: 'Tips',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
@@ -92,30 +92,30 @@
                 {type: "checkbox", width: 50},
                 //{field: 'id', width: 100, title: 'ID', sort: true},
                 {templet: '<div><a href="javascript:void(0)" style="color:#00b7ee" lay-event="bookInfoEvent">{{d.bookInfo.name}}</a></div>',
-                    width: 100, title: '图书名称'},
-                {templet: '<div>{{d.readerInfo.readerNumber}}</div>', width: 120, title: '借书卡'},
+                    width: 100, title: 'Book Name'},
+                {templet: '<div>{{d.readerInfo.readerNumber}}</div>', width: 120, title: 'Borrower Card'},
                 {templet: '<div><a href="javascript:void(0)" style="color:#00b7ee" lay-event="readerInfoEvent">{{d.readerInfo.realName}}</a></div>',
-                    width: 100, title: '借阅人'},
-                // {templet: '<div>{{d.reader.name}}</div>', width: 80, title: '借阅人'},
-                {templet:"<div>{{layui.util.toDateString(d.lendDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 160, title: '借阅时间'},
-                {field: 'backDate', width: 160, title: '还书时间'},
-                {title:"还书类型",minWidth: 120,templet:function(res){
-                      if(res.backType=='0'){
-                          return '<span class="layui-badge layui-bg-green">正常还书</span>'
-                      }else if(res.backType=='1'){
-                          return '<span class="layui-badge layui-bg-gray">延迟还书</span>'
+                    width: 100, title: 'Borrower'},
+                // {templet: '<div>{{d.reader.name}}</div>', width: 80, title: 'Borrower'},
+                {templet:"<div>{{layui.util.toDateString(d.lendDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 160, title: 'Borrow Time'},
+                {field: 'backDate', width: 160, title: 'Return Time'},
+                {title:"Return Type",minWidth: 120,templet:function(res){
+                        if(res.backType=='0'){
+                            return '<span class="layui-badge layui-bg-green">Normal Return</span>'
+                        }else if(res.backType=='1'){
+                            return '<span class="layui-badge layui-bg-gray">Delayed Return</span>'
 
-                      }else if(res.backType=='2') {
-                          return '<span class="layui-badge layui-bg-yellow">破损还书</span>'
-                      }else if(res.backType=='3'){
-                          return '<span class="layui-badge layui-bg-green">丢失图书</span>'
-                      } else if (res.backType=='4') {
-                          return '<span class="layui-badge layui-bg-black">超时还书</span>'
-                      } else{
-                          return '<span class="layui-badge layui-bg-red">在借中</span>'
-                      }
+                        }else if(res.backType=='2') {
+                            return '<span class="layui-badge layui-bg-yellow">Damaged Return</span>'
+                        }else if(res.backType=='3'){
+                            return '<span class="layui-badge layui-bg-green">Lost Book</span>'
+                        } else if (res.backType=='4') {
+                            return '<span class="layui-badge layui-bg-black">Overdue Return</span>'
+                        } else{
+                            return '<span class="layui-badge layui-bg-red">Borrowing</span>'
+                        }
                     }},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {title: 'operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,
@@ -157,9 +157,9 @@
          */
         table.on('tool(currentTableFilter)', function (obj) {
             var data=obj.data;
-            if (obj.event === 'edit') {  // 监听添加操作
+            if (obj.event === 'edit') {  // Listen for add operation
                 var index = layer.open({
-                    title: '异常还书',
+                    title: 'Exceptional Return',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -170,10 +170,10 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            } else if (obj.event === 'delete') {  // 监听删除操作
-                layer.confirm('确定是否删除', function (index) {
-                    //调用删除功能
-                    //获取记录信息的id集合
+            } else if (obj.event === 'delete') {  // Listen for delete operation
+                layer.confirm('Are you sure you want to delete?', function (index) {
+                    // Call delete function
+                    // Get the id collection of the record information
                     deleteInfoByIds(data.id,data.bookId,index);
                     layer.close(index);
                 });
@@ -193,7 +193,7 @@
          */
         function queryLookBookList(flag,id){
             var index = layer.open({
-                title: '借阅时间线',
+                title: 'Borrowing Timeline',
                 type: 2,
                 shade: 0.2,
                 maxmin:true,
@@ -242,14 +242,14 @@
          * 提交删除功能
          */
         function deleteInfoByIds(ids ,bookIds,index){
-            //向后台发送请求
+            //Send request to backend
             $.ajax({
                 url: "deleteLendListByIds",
                 type: "POST",
                 data: {ids: ids,bookIds:bookIds},
                 success: function (result) {
-                    if (result.code == 0) {//如果成功
-                        layer.msg('删除成功', {
+                    if (result.code == 0) {//If success
+                        layer.msg('Delete success', {
                             icon: 6,
                             time: 500
                         }, function () {
@@ -258,7 +258,7 @@
                             parent.layer.close(iframeIndex);
                         });
                     } else {
-                        layer.msg("删除失败");
+                        layer.msg("Delete failed");
                     }
                 }
             })
@@ -268,14 +268,14 @@
          * 提交还书功能
          */
         function backBooksByIds(ids ,bookIds,index){
-            //向后台发送请求
+            // Send request to the backend
             $.ajax({
                 url: "backLendListByIds",
                 type: "POST",
                 data: {ids: ids,bookIds:bookIds},
                 success: function (result) {
-                    if (result.code == 0) {//如果成功
-                        layer.msg('还书成功', {
+                    if (result.code == 0) {//If successful
+                        layer.msg('Book returned successfully', {
                             icon: 6,
                             time: 500
                         }, function () {
@@ -284,7 +284,7 @@
                             parent.layer.close(iframeIndex);
                         });
                     } else {
-                        layer.msg("还书失败");
+                        layer.msg("Failed to return book");
                     }
                 }
             })
@@ -293,9 +293,9 @@
          * toolbar监听事件
          */
         table.on('toolbar(currentTableFilter)', function (obj) {
-            if (obj.event === 'add') {  // 监听添加操作
+            if (obj.event === 'add') {  // Listen for add operation
                 var index = layer.open({
-                    title: '借书管理',
+                    title: 'Borrowing Management',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -306,43 +306,41 @@
                 $(window).on("resize", function () {
                     layer.full(index);
                 });
-            }else if (obj.event === 'back'){//还书操作
-                //获取选中的记录信息
-                //获取选中的记录信息
+            }else if (obj.event === 'back'){//Return operation
+                //Get selected record information
                 var checkStatus=table.checkStatus(obj.config.id);
-                //debugger;
                 var data=checkStatus.data;
 
-                if(data.length==0){//如果没有选中信息
-                    layer.msg("请选择要借阅还书的记录信息");
+                if(data.length==0){//If no selected information
+                    layer.msg("Please select the record information to borrow and return");
                 }else{
-                    //获取记录信息的id集合
-                    var ids=getCheackId(data);//借阅记录的id集合
-                    var bookIds=getCheackBookId(data);//图书的id集合
-                    layer.confirm('确定还书么', function (index) {
-                        //调用还书功能
+                    //Get the id collection of the record information
+                    var ids=getCheackId(data);//Id collection of borrowing records
+                    var bookIds=getCheackBookId(data);//Id collection of books
+                    layer.confirm('Are you sure to return the book', function (index) {
+                        //Call the return book function
                         backBooksByIds(ids,bookIds,index);
                         layer.close(index);
                     });
                 }
             } else if (obj.event === 'delete') {
-                 /*
-                   1、提示内容，必须删除大于0条
-                   2、获取要删除记录的id信息
-                   3、提交删除功能 ajax
-                 */
-                 //获取选中的记录信息
-                var checkStatus=table.checkStatus(obj.config.id);
-                var data=checkStatus.data;
-                if(data.length==0){//如果没有选中信息
-                    layer.msg("请选择要删除的记录信息");
-                }else{
-                    //获取记录信息的id集合
-                    var ids=getCheackId(data);//借阅记录的id集合
-                    var bookIds=getCheackBookId(data);//图书的id集合
-                    layer.confirm('确定是否删除', function (index) {
-                        //调用删除功能
-                        deleteInfoByIds(ids,bookIds,index);
+                /*
+                  1. Prompt content, must delete more than 0
+                  2. Get the id information of the record to be deleted
+                  3. Submit delete function ajax
+                */
+                // Get selected record information
+                var checkStatus = table.checkStatus(obj.config.id);
+                var data = checkStatus.data;
+                if (data.length == 0) { // If no selected information
+                    layer.msg("Please select the record information to be deleted");
+                } else {
+                    // Get the id collection of the record information
+                    var ids = getCheackId(data); // Borrowing record id collection
+                    var bookIds = getCheackBookId(data); // Book id collection
+                    layer.confirm('Are you sure to delete?', function (index) {
+                        // Call delete function
+                        deleteInfoByIds(ids, bookIds, index);
                         layer.close(index);
                     });
                 }

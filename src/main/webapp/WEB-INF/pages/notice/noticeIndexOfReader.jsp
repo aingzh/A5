@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>类型管理</title>
+    <title>Type management</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,18 +19,18 @@
     <div class="layuimini-main">
 
         <div class="demoTable">
-            公告主题：
+            Announcement subject：
             <div class="layui-inline">
                 <input class="layui-input" name="topic" id="topic" autocomplete="off">
             </div>
-            <button class="layui-btn" data-type="reload">搜索</button>
+            <button class="layui-btn" data-type="reload">search</button>
         </div>
 
         <!--表单，查询出的数据在这里显示-->
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="query">查询详情</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="query">Query details</a>
         </script>
 
     </div>
@@ -47,18 +47,18 @@
             url: '${pageContext.request.contextPath}/noticeAll',//查询类型数据
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
+                title: 'Tips',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
             cols: [[
                 //{type: "checkbox", width: 50},
                 //{field: 'id', width: 100, title: 'ID', sort: true},
-                {field: 'topic', width: 150, title: '公告主题'},
-                {field: 'content', width: 200, title: '公告内容'},
-                {field: 'author', width: 100, title: '发布者'},
-                {templet:"<div>{{layui.util.toDateString(d.createDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 200, title: '发布时间'},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {field: 'topic', width: 150, title: 'Topic'},
+                {field: 'content', width: 200, title: 'Content'},
+                {field: 'author', width: 100, title: 'Author'},
+                {templet:"<div>{{layui.util.toDateString(d.createDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 200, title: 'Publish Time'},
+                {title: 'Operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,  <!--默认显示15条-->
@@ -95,7 +95,7 @@
             var data=obj.data;
             if (obj.event === 'query') {  // 监听查询详情操作
                 var index = layer.open({
-                    title: '查看公告',
+                    title: 'View the announcement',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,

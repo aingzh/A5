@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>修改类型信息</title>
+    <title>Modify type information</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -22,14 +22,14 @@
 <div class="layui-form layuimini-form">
     <input type="hidden" name="id"  value="${info.id}">
     <div class="layui-form-item">
-        <label class="layui-form-label required">类型名称</label>
+        <label class="layui-form-label required">Type Name</label>
         <div class="layui-input-block">
             <input type="text" name="name" lay-verify="required" value="${info.name}" class="layui-input">
-            <tip>填写自己类型名称</tip>
+            <tip>Fill in your own type name</tip>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">备注信息</label>
+        <label class="layui-form-label">Remarks</label>
         <div class="layui-input-block">
             <textarea name="remarks" class="layui-textarea" > ${info.remarks}</textarea>
         </div>
@@ -37,7 +37,7 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认修改</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">Confirm Modification</button>
         </div>
     </div>
 </div>
@@ -60,7 +60,7 @@
                 data:JSON.stringify(datas),
                 success:function(result){
                     if(result.code==0){//如果成功
-                        layer.msg('修改成功',{
+                        layer.msg('Modified successfully',{
                             icon:6,
                             time:500
                         },function(){
@@ -69,7 +69,7 @@
                             parent.layer.close(iframeIndex);
                         })
                     }else{
-                         layer.msg("修改失败");
+                         layer.msg("Modification failure");
                     }
                 }
             })

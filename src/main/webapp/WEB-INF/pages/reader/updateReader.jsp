@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>修改图书</title>
+    <title>Modify book</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,67 +23,67 @@
 <div class="layui-form layuimini-form">
     <input type="hidden" name="id"   value="${info.id}">
     <div class="layui-form-item">
-        <label class="layui-form-label required">读者卡号</label>
+        <label class="layui-form-label required">Reader Card Number</label>
         <div class="layui-input-block">
-            <input type="text" name="readerNumber" lay-reqtext="读者卡号不能为空" value="${info.readerNumber}"
+            <input type="text" name="readerNumber" lay-reqtext="Reader Card Number cannot be empty" value="${info.readerNumber}"
                    autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">用户名</label>
+        <label class="layui-form-label required">Username</label>
         <div class="layui-input-block">
-            <input type="text" name="username" lay-reqtext="用户名不能为空" value="${info.username}" autocomplete="off"
+            <input type="text" name="username" lay-reqtext="Username cannot be empty" value="${info.username}" autocomplete="off"
                    class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">头像</label>
+        <label class="layui-form-label required">Avatar</label>
         <div class="layui-input-block">
             <input type="text" name="avatar" value="${info.avatar}" autocomplete="off" class="layui-input">
         </div>
     </div>
     <%--
-        新增住址
+        Add Address
     --%>
     <div class="layui-form-item">
-        <label class="layui-form-label required">住址</label>
+        <label class="layui-form-label required">Address</label>
         <div class="layui-input-block">
             <input type="text" name="address" value="${info.address}" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">真实姓名</label>
+        <label class="layui-form-label required">Real Name</label>
         <div class="layui-input-block">
-            <input type="text" name="realName" lay-reqtext="真实姓名不能为空" value="${info.realName}"
+            <input type="text" name="realName" lay-reqtext="Real Name cannot be empty" value="${info.realName}"
                    autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">性别</label>
+        <label class="layui-form-label required">Gender</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex"  value="男" title="男"  ${"男" eq info.sex ?"checked='checked'":''} />
-            <input type="radio" name="sex"  value="女" title="女"  ${"女" eq info.sex ?"checked='checked'":''} />
+            <input type="radio" name="sex"  value="male" title="male"  ${"male" eq info.sex ?"checked='checked'":''} />
+            <input type="radio" name="sex"  value="female" title="female"  ${"female" eq info.sex ?"checked='checked'":''} />
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">出生日期</label>
+        <label class="layui-form-label required">Date of Birth</label>
         <div class="layui-input-block">
             <input type="text" name="birthday" id="date" lay-verify="required"  value="<fmt:formatDate value='${info.birthday}' pattern='yyyy-MM-dd'/>" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">联系方式</label>
+        <label class="layui-form-label required">Contact Number</label>
         <div class="layui-input-block">
             <input type="text" name="tel" lay-verify="required"  class="layui-input" value="${info.tel}" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label required">邮箱地址</label>
+        <label class="layui-form-label required">Email Address</label>
         <div class="layui-input-block">
             <input type="text" name="email" autocomplete="off" value="${info.email}"  class="layui-input">
         </div>
@@ -91,7 +91,7 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">确认修改</button>
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">Confirm Changes</button>
         </div>
     </div>
 </div>
@@ -121,7 +121,7 @@
                 data:JSON.stringify(datas),
                 success:function(result){
                     if(result.code==0){//如果成功
-                        layer.msg('修改成功',{
+                        layer.msg('Modified successfully',{
                             icon:6,
                             time:500
                         },function(){
@@ -130,7 +130,7 @@
                             parent.layer.close(iframeIndex);
                         })
                     }else{
-                        layer.msg("修改失败");
+                        layer.msg("Modification failure");
                     }
                 }
             })

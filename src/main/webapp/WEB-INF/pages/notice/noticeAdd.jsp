@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>发布公告</title>
+    <title>Make a public announcement</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,15 +23,15 @@
 <body>
 <div class="layui-form layuimini-form">
     <div class="layui-form-item">
-        <label class="layui-form-label required">公告主题</label>
+        <label class="layui-form-label required">Announcement subject</label>
         <div class="layui-input-block">
-            <input type="text" name="topic" lay-verify="required" lay-reqtext="公告主题不能为空" autocomplete="off" class="layui-input">
+            <input type="text" name="topic" lay-verify="required" lay-reqtext="The announcement topic cannot be empty" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label required">公告内容</label>
+        <label class="layui-form-label required">Announcement content</label>
         <div class="layui-input-block">
-            <textarea name="content" lay-verify="required" lay-reqtext="公告内容不能为空" autocomplete="off" class="layui-textarea"></textarea>
+            <textarea name="content" lay-verify="required" lay-reqtext="Notice cannot be empty" autocomplete="off" class="layui-textarea"></textarea>
         </div>
     </div>
 
@@ -58,7 +58,7 @@
                 data:datas,
                 success:function(result){
                     if(result.code==0){//如果成功
-                        layer.msg('添加成功',{
+                        layer.msg('Add successfully',{
                             icon:6,
                             time:500
                         },function(){
@@ -67,7 +67,7 @@
                             parent.layer.close(iframeIndex);
                         })
                     }else{
-                         layer.msg("添加失败");
+                         layer.msg("Add failure");
                     }
                 }
             })

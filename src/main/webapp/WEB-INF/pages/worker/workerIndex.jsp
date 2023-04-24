@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>员工管理</title>
+    <title>Employee management</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -23,35 +23,35 @@
 
         <div class="demoTable">
             <div class="layui-form-item layui-form ">
-                员工卡号：
+                Employee Card Number:
                 <div class="layui-inline">
                     <input class="layui-input" name="workerNumber" id="workerNumber" autocomplete="off">
                 </div>
-                用户名：
+                Username:
                 <div class="layui-inline">
                     <input class="layui-input" name="username" id="username" autocomplete="off">
                 </div>
-                电话：
+                Phone:
                 <div class="layui-inline">
                     <input class="layui-input" name="tel" id="tel" autocomplete="off">
                 </div>
-                <button class="layui-btn" data-type="reload">搜索</button>
+                <button class="layui-btn" data-type="reload">Search</button>
             </div>
         </div>
 
         <script type="text/html" id="toolbarDemo">
             <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> 添加 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm data-add-btn" lay-event="add"> Add </button>
+                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> Delete </button>
             </div>
         </script>
 
-        <!--表单，查询出的数据在这里显示-->
+        <!--Form, data queried will be displayed here-->
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="update">修改</a>
-            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
+            <a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="update">Edit</a>
+            <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">Delete</a>
         </script>
 
     </div>
@@ -69,22 +69,22 @@
             url: '${pageContext.request.contextPath}/workerAll',//查询数据 /*1*/
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
-                title: '提示',
+                title: 'Tips',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
             cols: [[
                 {type: "checkbox", width: 50},
                 //{field: 'id', width: 100, title: 'ID', sort: true},
-                {field: 'workerNumber', width: 150, title: '员工卡号'},
-                {field: 'username', width: 100, title: '用户名'},
-                {field: 'realName', width: 100, title: '真实姓名'},
-                {field: 'sex', width: 80, title: '性别'},
-                {field: 'tel', width: 150, title: '电话'},
-                {field: 'status', width: 80, title: '是否离职'}, /*2，0表示离职*/
-                {templet:"<div>{{layui.util.toDateString(d.registerDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 200, title: '办卡时间'},
-                {templet: '<div>{{d.email}}</div>', width: 150, title: '邮箱'},
-                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
+                {field: 'workerNumber', width: 150, title: 'Employee ID'},
+                {field: 'username', width: 100, title: 'Username'},
+                {field: 'realName', width: 100, title: 'Real Name'},
+                {field: 'sex', width: 80, title: 'Gender'},
+                {field: 'tel', width: 150, title: 'Phone'},
+                {field: 'status', width: 80, title: 'Employment Status'}, /*2，0表示离职*/
+                {templet:"<div>{{layui.util.toDateString(d.registerDate,'yyyy-MM-dd HH:mm:ss')}}</div>", width: 200, title: 'Registration Time'},
+                {templet: '<div>{{d.email}}</div>', width: 150, title: 'Email'},
+                {title: 'Operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,  <!--默认显示15条-->
@@ -125,7 +125,7 @@
             var data=obj.data;
             if (obj.event === 'update') {  // 监听修改操作
                 var index = layer.open({
-                    title: '修改员工信息',
+                    title: 'Modify employee information',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -137,7 +137,7 @@
                     layer.full(index);
                 });
             } else if (obj.event === 'delete') {  // 监听删除操作
-                layer.confirm('确定是否删除', function (index) {
+                layer.confirm('Are you sure to delete?', function (index) {
                     //调用删除功能
                     deleteInfoByIds(data.id,index);
                     layer.close(index);
@@ -174,7 +174,7 @@
                 data: {ids: ids},
                 success: function (result) {
                     if (result.code == 0) {//如果成功
-                        layer.msg('删除成功', {
+                        layer.msg('Deleted successfully', {
                             icon: 6,
                             time: 500
                         }, function () {
@@ -183,7 +183,7 @@
                             parent.layer.close(iframeIndex);
                         });
                     } else {
-                        layer.msg("删除失败");
+                        layer.msg("Deleted failure");
                     }
                 }
             })
@@ -195,7 +195,7 @@
         table.on('toolbar(currentTableFilter)', function (obj) {
             if (obj.event === 'add') {  // 监听添加操作
                 var index = layer.open({
-                    title: '添加员工',
+                    title: 'Add staff',
                     type: 2,
                     shade: 0.2,
                     maxmin:true,
@@ -216,11 +216,11 @@
                 var checkStatus=table.checkStatus(obj.config.id);
                 var data=checkStatus.data;
                 if(data.length==0){//如果没有选中信息
-                    layer.msg("请选择要删除的记录信息");
+                    layer.msg("Select the record information you want to delete");
                 }else{
                     //获取记录信息的id集合,拼接的ids
                     var ids=getCheackId(data);
-                    layer.confirm('确定是否删除', function (index) {
+                    layer.confirm('Are you sure to delete?', function (index) {
                         //调用删除功能
                         deleteInfoByIds(ids,index);
                         layer.close(index);

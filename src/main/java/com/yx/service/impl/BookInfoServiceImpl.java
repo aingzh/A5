@@ -25,7 +25,8 @@ public class BookInfoServiceImpl implements BookInfoService {
 
     @Override
     public void addBookSubmit(BookInfo bookInfo) {
-        bookInfoMapper.insert(bookInfo);
+        //bookInfoMapper.insert(bookInfo);
+        bookInfoMapper.insertSelective(bookInfo);
     }
 
     @Override
