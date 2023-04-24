@@ -11,7 +11,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("执行后，返回前执行....");
+        System.out.println("After execution, return to the previous execution....");
     }
 
     @Override
