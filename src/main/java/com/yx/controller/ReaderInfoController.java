@@ -42,7 +42,7 @@ public class ReaderInfoController {
     @ResponseBody
     public DataInfo queryReaderAll(ReaderInfo readerInfo, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit) {
         PageInfo<ReaderInfo> pageInfo = readerInfoService.queryAllReaderInfo(readerInfo, pageNum, limit);
-        return DataInfo.ok("成功", pageInfo.getTotal(), pageInfo.getList());
+        return DataInfo.ok("success", pageInfo.getTotal(), pageInfo.getList());
     }
 
     /**
@@ -107,7 +107,7 @@ public class ReaderInfoController {
             Admin admin = (Admin) session.getAttribute("user");
             Admin admin1 = (Admin) adminService.queryAdminById(admin.getId());
             if (!oldPwd.equals(admin1.getPassword())) {
-                return DataInfo.fail("输入的旧密码错误");
+                return DataInfo.fail("The old password entered is incorrect");
             } else {
                 admin1.setPassword(newPwd);
                 adminService.updateAdminSubmit(admin1);//数据库修改
@@ -117,7 +117,7 @@ public class ReaderInfoController {
             ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
             ReaderInfo readerInfo1 = readerInfoService.queryReaderInfoById(readerInfo.getId());//根据id查询对象
             if (!oldPwd.equals(readerInfo1.getPassword())) {
-                return DataInfo.fail("输入的旧密码错误");
+                return DataInfo.fail("The old password entered is incorrect");
             } else {
                 readerInfo1.setPassword(newPwd);
                 readerInfoService.updateReaderInfoSubmit(readerInfo1);//数据库修改
