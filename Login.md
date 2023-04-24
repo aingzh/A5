@@ -105,19 +105,19 @@ mybatis generator会根据worker数据表字段创建po类、dao类以及mapper�
         if (workerNumber == null) {
             workerInfo = workerService.queryUserInfoByNameAndPassword(username, password);
             if (workerInfo == null) {
-                model.addAttribute("msg", "用户名或密码错误");
+                model.addAttribute("msg", "The username or password is incorrect");
                 return "login";
             } else if (workerInfo.getStatus() == 0){
-                model.addAttribute("msg", "该图书馆管理人员已离职");
+                model.addAttribute("msg", "The library staff has resignated");
                 return "login";
             }
         } else {
             workerInfo = workerService.queryUserInfoByWorkerNumberAndPassword(workerNumber, password);
             if (workerInfo == null) {
-                model.addAttribute("msg", "工号或密码错误");
+                model.addAttribute("msg", "The work number or password is incorrect");
                 return "login";
             } else if (workerInfo.getStatus() == 0) {
-                model.addAttribute("msg", "该图书馆管理人员已离职");
+                model.addAttribute("msg", "The library staff has resignated");
                 return "login";
             }
         }
@@ -127,18 +127,18 @@ mybatis generator会根据worker数据表字段创建po类、dao类以及mapper�
 ```  
 读者登陆判断，添加读者邮箱密码登陆，需要前端对读者输入的账户做判断，若输入用户名保存在username，若输入邮箱保存在email，没有删除读者的用户名登陆是为了不影响其他同学登陆读者系统测试
 ```
-else if (type.equals("2")){//来自读者信息表
+    else if (type.equals("2")){//来自读者信息表
     ReaderInfo readerInfo;
     if (email == null) {
         readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
         if (readerInfo == null) {
-             model.addAttribute("msg", "用户名或密码错误");
+             model.addAttribute("msg", "The username or password is incorrect");
              return "login";
         }
     }else {
          readerInfo = readerService.queryUserInfoByEmailAndPassword(email, password);
          if (readerInfo == null) {
-              model.addAttribute("msg", "邮箱或密码错误");
+              model.addAttribute("msg", "The email or password is incorrect");
               return "login";
          }
     }
@@ -149,4 +149,18 @@ else if (type.equals("2")){//来自读者信息表
 
 # login.jsp #
 为了测试登陆，在选择用户类型中添加了图书馆工作人员的选项  
-```<option value="3">图书馆工作人员</option>```
+```<option value="3">图书馆工作人员</option>```  
+
+# LoginController 修改 #  
+添加用户名、邮箱、工号通过正则表达式判断，邮箱规则是一段字符串中间必须有@和.符号，并以一段小写字母结束，工号规则是以2000920开头的数字连接固定任意四位的数字  
+```
+    String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.[a-z]+$";
+    String workerNumberRegex = "^2000920\\d{4}$";
+    if (input.matches(emailRegex)) {
+        email = input;
+    } else if (input.matches(workerNumberRegex)) {
+        workerNumber = input;
+    } else {
+        username = input;
+    }
+```

@@ -64,7 +64,7 @@ public class LoginController {
             response.getOutputStream().write(verifyCode.getImgBytes());
             response.getOutputStream().flush();
         } catch (IOException e) {
-            System.out.println("异常处理");
+            System.out.println("Exception handling");
         }
     }
 
@@ -73,10 +73,12 @@ public class LoginController {
      */
     @RequestMapping("/loginIn")
     public String loginIn(HttpServletRequest request, Model model) {
+
         //获取用户名与密码
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String workerNumber = request.getParameter("workerNumber");
+        String input = request.getParameter("input");
+        String email = null;
+        String workerNumber = null;
+        String username = null;
         String password = request.getParameter("password");
         String code = request.getParameter("captcha");
         String type = request.getParameter("type");
@@ -85,64 +87,75 @@ public class LoginController {
         HttpSession session = request.getSession();
         String realCode = (String) session.getAttribute("VerifyCode");
         if (!realCode.toLowerCase().equals(code.toLowerCase())) {
-            model.addAttribute("msg", "验证码不正确");
+            model.addAttribute("msg", "The captcha is incorrect");
             return "login";
+        }
+
+        // 类型判断
+        // 使用正则表达式验证输入是否为邮箱、工号、用户名
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+.[a-z]+$";
+        String workerNumberRegex = "^2000920\\d{4}$";
+        if (input.matches(emailRegex)) {
+            email = input;
+        } else if (input.matches(workerNumberRegex)) {
+            workerNumber = input;
         } else {
-            //验证码正确则判断用户名和密码
-            if (type.equals("1")) {//管理员信息
-                //工号和密码是否正确
-                Admin admin = adminService.queryUserByNameAndPassword(username, password);
-                if (admin == null) {//该用户不存在
-                    model.addAttribute("msg", "工号或密码错误");
+            username = input;
+        }
+        //验证码正确则判断用户名和密码
+        if (type.equals("1")) {//管理员信息
+            //工号和密码是否正确
+            Admin admin = adminService.queryUserByNameAndPassword(username, password);
+            if (admin == null) {//该用户不存在
+                model.addAttribute("msg", "The work number or password is incorrect");
+                return "login";
+            }
+            session.setAttribute("user", admin);
+            session.setAttribute("type", "admin");
+        } else if (type.equals("2")) {//来自读者信息表
+            ReaderInfo readerInfo;
+            if (email == null) {
+                readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
+                if (readerInfo == null) {
+                    model.addAttribute("msg", "The username or password is incorrect");
                     return "login";
                 }
-                session.setAttribute("user", admin);
-                session.setAttribute("type", "admin");
-            } else if (type.equals("2")){//来自读者信息表
-                ReaderInfo readerInfo;
-                if (email == null) {
-                    readerInfo = readerService.queryUserInfoByNameAndPassword(username, password);
-                    if (readerInfo == null) {
-                        model.addAttribute("msg", "用户名或密码错误");
-                        return "login";
-                    }
-                }else {
-                    readerInfo = readerService.queryUserInfoByEmailAndPassword(email, password);
-                    if (readerInfo == null) {
-                        model.addAttribute("msg", "邮箱或密码错误");
-                        return "login";
-                    }
+            } else {
+                readerInfo = readerService.queryUserInfoByEmailAndPassword(email, password);
+                if (readerInfo == null) {
+                    model.addAttribute("msg", "The email or password is incorrect");
+                    return "login";
                 }
-                session.setAttribute("user", readerInfo);
-                session.setAttribute("type", "reader");
-            } else if (type.equals("3")){//来自图书馆工作人员信息表
-                WorkerInfo workerInfo;
-                if (workerNumber == null) {
-                    workerInfo = workerService.queryUserInfoByNameAndPassword(username, password);
-                    if (workerInfo == null) {
-                        model.addAttribute("msg", "用户名或密码错误");
-                        return "login";
-                    } else if (workerInfo.getStatus() == 0){
-                        model.addAttribute("msg", "该图书馆管理人员已离职");
-                        return "login";
-                    }
-                } else {
-                    workerInfo = workerService.queryUserInfoByWorkerNumberAndPassword(workerNumber, password);
-                    if (workerInfo == null) {
-                        model.addAttribute("msg", "工号或密码错误");
-                        return "login";
-                    } else if (workerInfo.getStatus() == 0) {
-                        model.addAttribute("msg", "该图书馆管理人员已离职");
-                        return "login";
-                    }
-                }
-                session.setAttribute("user", workerInfo);
-                session.setAttribute("type", "worker");
             }
-
-
-            return "redirect:/index";
+            session.setAttribute("user", readerInfo);
+            session.setAttribute("type", "reader");
+        } else if (type.equals("3")) {//来自图书馆工作人员信息表
+            WorkerInfo workerInfo;
+            if (workerNumber == null) {
+                workerInfo = workerService.queryUserInfoByNameAndPassword(username, password);
+                if (workerInfo == null) {
+                    model.addAttribute("msg", "The username or password is incorrect");
+                    return "login";
+                } else if (workerInfo.getStatus() == 0) {
+                    model.addAttribute("msg", "The library staff has resignated");
+                    return "login";
+                }
+            } else {
+                workerInfo = workerService.queryUserInfoByWorkerNumberAndPassword(workerNumber, password);
+                if (workerInfo == null) {
+                    model.addAttribute("msg", "The work number or password is incorrect");
+                    return "login";
+                } else if (workerInfo.getStatus() == 0) {
+                    model.addAttribute("msg", "The library staff has resignated");
+                    return "login";
+                }
+            }
+            session.setAttribute("user", workerInfo);
+            session.setAttribute("type", "worker");
         }
+
+        return "redirect:/index";
+
     }
 
     /**

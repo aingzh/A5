@@ -6,9 +6,9 @@ public class Constants {
 
     public final static int FAIL_CODE = 400;
 
-    public final static String OK_MSG = "请求成功";
+    public final static String OK_MSG = "The request succeeded";
 
-    public final static String FAIL_MSG = "请求失败";
+    public final static String FAIL_MSG = "The request failed";
 
     public final static int STATUS_0 = 0;//可用状态
 

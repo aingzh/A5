@@ -31,7 +31,7 @@ public class SuperAdminController {
     @ResponseBody
     public DataInfo queryAdminAll(Admin admin, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit) {
         PageInfo<Admin> pageInfo = adminService.queryAdminAll(admin, pageNum, limit);
-        return DataInfo.ok("成功", pageInfo.getTotal(), pageInfo.getList());
+        return DataInfo.ok("success", pageInfo.getTotal(), pageInfo.getList());
     }
 
     */
@@ -82,7 +82,7 @@ public class SuperAdminController {
     public DataInfo updatePwdSubmit(Integer id, String oldPwd, String newPwd) {
         Admin admin = adminService.queryAdminById(id);//根据id查询对象
         if (!oldPwd.equals(admin.getPassword())) {
-            return DataInfo.fail("输入的旧密码错误");
+            return DataInfo.fail("The old password entered is incorrect");
         } else {
             admin.setPassword(newPwd);
             adminService.updateAdminSubmit(admin);//数据库修改
