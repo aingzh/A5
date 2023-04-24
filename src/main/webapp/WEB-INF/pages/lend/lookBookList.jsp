@@ -23,13 +23,13 @@
     <li class="layui-timeline-item">
         <div class="layui-timeline-content layui-text">
             <div class="layui-timeline-title">
-                <fmt:formatDate value="${lend.lendDate}" pattern="yyyy年MM月dd日HH点mm分ss秒" /> <br/>
+                <fmt:formatDate value="${lend.lendDate}" pattern="yyyy-MM-dd HH:mm:ss" /> <br/>
                 <span style="color: red"> ${lend.readerInfo.realName}</span> borrow <span style="color: crimson"><<${lend.bookInfo.name}>></span><br/>
                 <c:if test="${lend.backDate == null}">
                     unreturned
                 </c:if>
                 <c:if test="${lend.backDate != null}">
-                    <fmt:formatDate value="${lend.backDate}" pattern="yyyy年MM月dd日HH点mm分ss秒" /> <span style="color: green">return</span>,
+                    <fmt:formatDate value="${lend.backDate}" pattern="yyyy-MM-dd HH:mm:ss" /> <span style="color: green">return</span>,
                 </c:if>
             </div>
         </div>

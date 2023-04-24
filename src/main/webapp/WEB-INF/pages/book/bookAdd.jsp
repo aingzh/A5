@@ -41,7 +41,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Category</label>
         <div class="layui-input-block">
-            <select name="typeId" id="typeId" lay-verify="required">
+            <select name="typeId" id="typeId" lay-verify="required" lay-reqtext="Book category cannot be empty">
                 <option value="">Please select</option>
             </select>
         </div>
@@ -50,28 +50,28 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Author</label>
         <div class="layui-input-block">
-            <input type="text" name="author" lay-verify="required"  class="layui-input" autocomplete="off">
+            <input type="text" name="author" lay-verify="required" lay-reqtext="Book author cannot be empty" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Publisher</label>
         <div class="layui-input-block">
-            <input type="text" name="publish" lay-verify="required"  class="layui-input" autocomplete="off">
+            <input type="text" name="publish" lay-verify="required" lay-reqtext="Book publisher cannot be empty" class="layui-input" autocomplete="off">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Language</label>
         <div class="layui-input-block">
-            <input type="text" name="language" autocomplete="off"  class="layui-input">
+            <input type="text" name="language" autocomplete="off" lay-verify="required" lay-reqtext="Book language cannot be empty" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Price</label>
         <div class="layui-input-block">
-            <input type="number" name="price" autocomplete="off"  class="layui-input">
+            <input type="number" name="price" autocomplete="off" lay-verify="required" lay-reqtext="Book price cannot be empty" class="layui-input">
         </div>
     </div>
 
