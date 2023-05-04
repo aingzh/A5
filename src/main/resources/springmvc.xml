@@ -41,6 +41,10 @@
             <mvc:exclude-mapping path="/login"/>
             <mvc:exclude-mapping path="/loginIn"/>
             <mvc:exclude-mapping path="/verifyCode"/>
+            <mvc:exclude-mapping path="/swagger-resources/**"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <mvc:exclude-mapping path="/v2/**"/>
+            <mvc:exclude-mapping path="/swagger-ui.html"/>
             <bean class="com.yx.interceptor.LoginInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -56,8 +60,6 @@
     <!--添加swagger配置-->
     <!--引入swagger相关-->
     <bean class="com.yx.config.swaggerConfig"/>
-<!--    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>-->
-<!--    <mvc:resources mapping="/webjar/**" location="classpath:/META-INF/resources/webjar/"/>-->
     <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swaggerConfig"/>
 
 </beans>

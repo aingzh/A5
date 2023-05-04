@@ -2,8 +2,6 @@ package com.yx.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -35,13 +33,4 @@ public class swaggerConfig {
                 .build();
     }
 
-    @Bean
-    public RequestMappingInfoHandlerMapping requestMapping(){
-        return new RequestMappingHandlerMapping();
-    }
-
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-//        registry.addResourceHandler("/webjar/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-//    }
 }
