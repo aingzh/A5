@@ -53,5 +53,11 @@
     <mvc:resources mapping="/lib/**" location="/lib/"></mvc:resources>
     <mvc:resources mapping="/api/**" location="/api/"></mvc:resources>
 
+    <!--添加swagger配置-->
+    <!--引入swagger相关-->
+    <bean class="com.yx.config.swaggerConfig"/>
+<!--    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>-->
+<!--    <mvc:resources mapping="/webjar/**" location="classpath:/META-INF/resources/webjar/"/>-->
+    <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swaggerConfig"/>
 
 </beans>
