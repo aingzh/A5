@@ -9,11 +9,15 @@ import com.yx.po.WorkerInfo;
 import com.yx.service.AdminService;
 import com.yx.service.ReaderInfoService;
 import com.yx.service.WorkerInfoService;
+import com.yx.utils.Constants;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +37,7 @@ public class LoginController {
     /**
      * 登录页面的转发
      */
+    
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -44,7 +49,8 @@ public class LoginController {
      * @param request
      * @param response
      */
-    @RequestMapping("/verifyCode")
+    @ApiOperation("二维码")
+    @RequestMapping(value = "/verifyCode", method = RequestMethod.GET)
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) {
         IVerifyCodeGen iVerifyCodeGen = new SimpleCharVerifyCodeGenImpl();
         try {
@@ -71,7 +77,14 @@ public class LoginController {
     /**
      * 登录验证
      */
-    @RequestMapping("/loginIn")
+    @RequestMapping(value = "/loginIn", method = RequestMethod.POST)
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "form", dataType = "String", name = "input", value = "管理员工号/图书馆工作人员工号或用户名/读者邮箱或用户名", required = true),
+            @ApiImplicitParam(paramType = "form", dataType = "String", name = "password", value = "密码", required = true),
+            @ApiImplicitParam(paramType = "form", dataType = "String", name = "captcha", value = "验证码", required = true),
+            @ApiImplicitParam(paramType = "form", dataType = "Long", name = "type", value = "用户类型", required = true)
+    })
+//    @ApiResponses({ @ApiResponse(code = Constants.OK_CODE, message = "操作成功")})
     public String loginIn(HttpServletRequest request, Model model) {
 
         //获取用户名与密码
@@ -86,7 +99,7 @@ public class LoginController {
         //判断验证码是否正确（验证码已经放入session）
         HttpSession session = request.getSession();
         String realCode = (String) session.getAttribute("VerifyCode");
-        if (!realCode.toLowerCase().equals(code.toLowerCase())) {
+        if (!realCode.equalsIgnoreCase(code)) {
             model.addAttribute("msg", "The captcha is incorrect");
             return "login";
         }
