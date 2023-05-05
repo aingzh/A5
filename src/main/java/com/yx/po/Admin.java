@@ -1,5 +1,7 @@
 package com.yx.po;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class Admin implements Serializable {
@@ -9,6 +11,7 @@ public class Admin implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "id，数据库控制自动增长")
     private Integer id;
 
     /**
@@ -17,6 +20,7 @@ public class Admin implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "用户名", required = true)
     private String username;
 
     /**
@@ -25,6 +29,7 @@ public class Admin implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "密码，不输入后端默认设为123456")
     private String password;
 
     /**
@@ -33,6 +38,7 @@ public class Admin implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "管理权限，0代表普通管理员，1代表超级管理员",required = true)
     private Integer adminType;
 
     /**

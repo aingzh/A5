@@ -1,5 +1,8 @@
 package com.yx.po;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "id，数据库控制自动增长")
     private Integer id;
 
     /**
@@ -18,6 +22,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "用户名", required = true)
     private String username;
 
     /**
@@ -26,6 +31,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "密码，不输入后端默认设为123456")
     private String password;
 
     /**
@@ -41,6 +47,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "真实姓名")
     private String realName;
 
     /**
@@ -49,6 +56,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "性别",required = true)
     private String sex;
 
     /**
@@ -57,6 +65,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "生日")
     private Date birthday;
 
     /**
@@ -65,6 +74,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "住址")
     private String address;
 
     /**
@@ -73,6 +83,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "电话号码/联系方式",required = true)
     private String tel;
 
     /**
@@ -81,6 +92,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
     /**
@@ -89,6 +101,7 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "注册日期",required = true)
     private Date registerDate;
 
     /**
@@ -97,8 +110,10 @@ public class ReaderInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "读者图书卡号",required = true)
     private String readerNumber;
 
+    @ApiModelProperty(value = "头像")
     private String avatar;
 
     /**
