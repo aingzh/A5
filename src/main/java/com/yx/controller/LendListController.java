@@ -10,6 +10,9 @@ import com.yx.service.LendListService;
 import com.yx.service.ReaderInfoService;
 import com.yx.utils.Constants;
 import com.yx.utils.DataInfo;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -70,6 +73,15 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/lendListAll")
+    @ApiOperation(value="可按条件分页查询所有借阅记录",httpMethod ="GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type",value = "借阅类型",paramType = "body",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "readerNumber",value = "读者id",defaultValue = "1",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "name",value = "读者姓名",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "status",value = "图书状态",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "pageNum",value = "页数",defaultValue = "1",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "limit",value = "每页显示条数",defaultValue = "15",paramType = "query",dataType="Integer",required = false)
+    })
     public DataInfo lendListAll(Integer type, String readerNumber, String name, Integer status,
                                 @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
         LendList info=new LendList();
@@ -221,6 +233,7 @@ public class LendListController {
      * 查阅时间线
      */
     @RequestMapping("/queryLookBookList")
+    @ApiOperation(value="查阅时间线",httpMethod ="GET")
     public String queryLookBookList(String flag, Integer id, Model model) {
         List<LendList> list = null;
         if (flag.equals("book")) {

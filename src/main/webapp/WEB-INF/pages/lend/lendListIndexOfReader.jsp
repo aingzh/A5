@@ -27,7 +27,7 @@
                     Return type
                     <div class="layui-inline">
                         <select class="layui-input" name="type" id="backType">
-                            <option value=""></option>
+                            <option value="">Select return type</option>
                             <option value="0">Return normally</option>
                             <option value="1">Delayed return</option>
                             <option value="2">Damaged return</option>
@@ -38,7 +38,7 @@
                     Book Type
                     <div class="layui-inline">
                         <select class="layui-input" name="status" id="status">
-                            <option value=""></option>
+                            <option value="">Select borrow type</option>
                             <option value="0">Not Borrowed</option>
                             <option value="1">Borrowed</option>
                         </select>
