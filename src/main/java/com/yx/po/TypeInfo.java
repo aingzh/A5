@@ -1,5 +1,7 @@
 package com.yx.po;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 public class TypeInfo implements Serializable {
@@ -9,6 +11,7 @@ public class TypeInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "id，数据库控制自动增长")
     private Integer id;
 
     /**
@@ -17,7 +20,9 @@ public class TypeInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "类型名")
     private String name;
+    @ApiModelProperty(value = "这后面几个谁加的？数据库没改加这也不顶用啊我说")
     private String author;
 
     public void setAuthor(String author) {
@@ -42,6 +47,7 @@ public class TypeInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "简述")
     private String remarks;
 
     /**

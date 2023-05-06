@@ -1,5 +1,7 @@
 package com.yx.po;
 
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "id，数据库控制自动增长")
     private Integer id;
 
     /**
@@ -18,6 +21,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "用户名", required = true)
     private String username;
 
     /**
@@ -26,6 +30,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "密码，不输入后端默认设为123456")
     private String password;
 
     /**
@@ -41,6 +46,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "真实姓名")
     private String realName;
 
     /**
@@ -49,6 +55,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "性别",required = true)
     private String sex;
 
     /**
@@ -57,6 +64,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "生日")
     private Date birthday;
 
     /**
@@ -65,6 +73,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "住址")
     private String address;
 
     /**
@@ -73,6 +82,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "电话号码/联系方式",required = true)
     private String tel;
 
     /**
@@ -81,6 +91,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "邮箱")
     private String email;
 
     /**
@@ -89,6 +100,7 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "注册日期",required = true)
     private Date registerDate;
 
     /**
@@ -97,11 +109,13 @@ public class WorkerInfo implements Serializable {
      *
      * @mbggenerated Tue Mar 30 16:30:04 CST 2021
      */
+    @ApiModelProperty(value = "员工工号",required = true)
     private String workerNumber;
 
     /**
      * 是否离职
      */
+    @ApiModelProperty(value = "是否离职，0代表离职，1代表在职",required = true)
     private Integer status;
 
     public Integer getStatus() {
@@ -115,6 +129,7 @@ public class WorkerInfo implements Serializable {
     /**
      * 头像
      */
+    @ApiModelProperty(value = "头像")
     private String avatar;
 
     public String getAvatar() {

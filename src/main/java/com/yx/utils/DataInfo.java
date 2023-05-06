@@ -1,17 +1,25 @@
 package com.yx.utils;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
  * 数据封闭类，返回给前端
  */
+@ApiModel(description= "返回响应数据，类json")
 public class DataInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(value = "类状态码，0成功，400失败")
     private Integer code;
+    @ApiModelProperty(value = "状态码描述信息，没啥有效信息")
     private String msg;
+    @ApiModelProperty(value = "主要的返回数据，通常是pojo的list")
     private Object data; //json数据
+    @ApiModelProperty(value = "分页数量，不太了解")
     private Long count; // 分页信息：总条数
 
     public DataInfo() {
