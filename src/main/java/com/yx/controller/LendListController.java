@@ -229,11 +229,15 @@ public class LendListController {
         return DataInfo.ok();
     }
 
-    /**
+        /**
      * 查阅时间线
      */
     @RequestMapping("/queryLookBookList")
-    @ApiOperation(value="查阅时间线",httpMethod ="GET")
+    @ApiOperation(value="查阅时间线,根据bookId或者readerId,返回jsp页面",httpMethod ="GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "flag",value = "id类型(book/reader)",paramType = "query",dataType="String",required = true),
+            @ApiImplicitParam(name = "id",value = "bookId/readId",paramType = "query",dataType="String",required = true),
+    })
     public String queryLookBookList(String flag, Integer id, Model model) {
         List<LendList> list = null;
         if (flag.equals("book")) {
@@ -245,7 +249,9 @@ public class LendListController {
         return "lend/lookBookList";
     }
 
+
     @RequestMapping("/queryLookBookList2")
+    @ApiOperation(value="根据登录用户查阅时间线,返回jsp页面",httpMethod ="GET")
     public String queryLookBookList(HttpServletRequest request, Model model) {
         ReaderInfo readerInfo = (ReaderInfo) request.getSession().getAttribute("user");
         List<LendList> list = list = lendListService.queryLookBookList(readerInfo.getId(), null);
@@ -282,6 +288,7 @@ public class LendListController {
      */
     @RequestMapping("/notifyBackLend")
     @ResponseBody
+    @ApiOperation(value="发送邮件提醒归还图书,默认返回ok,用户是否收到邮件以实际为准",httpMethod ="GET")
     public DataInfo notifyBackLend(HttpServletRequest request,Model model){
         List<LendList> list = lendListService.queryOverdueList();
         new Thread() {
