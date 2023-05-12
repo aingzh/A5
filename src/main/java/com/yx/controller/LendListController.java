@@ -103,6 +103,7 @@ public class LendListController {
 
     @ResponseBody
     @RequestMapping("/lendListAllOfReader")
+    @ApiOperation(value="查询所有借阅记录",httpMethod ="GET")
     public DataInfo lendListAllOfReader(HttpSession session, Integer backType, String name, Integer status,
                                         @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
         ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
@@ -136,6 +137,7 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/addLend")
+    @ApiOperation(value="借书信息提交",httpMethod ="POST")
     public DataInfo addLend(String readerNumber,String ids){
         //获取图书id的集合
         List<String> list= Arrays.asList(ids.split(","));
@@ -176,6 +178,7 @@ public class LendListController {
 
     @ResponseBody
     @RequestMapping("/addLendOfReader")
+    @ApiOperation(value="添加借阅记录",httpMethod ="POST")
     public DataInfo addLendOfReader(HttpSession session, String ids){
         ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
         return addLend(readerInfo.getId() + "", ids);
@@ -186,6 +189,7 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/deleteLendListByIds")
+    @ApiOperation(value="删除借阅记录",httpMethod ="POST")
     public DataInfo deleteLendListByIds(String ids, String bookIds) {
         List list = Arrays.asList(ids.split(","));//借阅记录的id
         List blist = Arrays.asList(bookIds.split(","));//图书信息的id
@@ -199,6 +203,7 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/backLendListByIds")
+    @ApiOperation(value="还书功能",httpMethod ="POST")
     public DataInfo backLendListByIds(String ids, String bookIds) {
         List<String> list = Arrays.asList(ids.split(","));//借阅记录的id
         List<String> blist = Arrays.asList(bookIds.split(","));//图书信息的id
@@ -210,6 +215,7 @@ public class LendListController {
      * 页面跳转 异常还书
      */
     @GetMapping("/excBackBook")
+    @ApiOperation(value="页面跳转 异常还书",httpMethod ="POST")
     public String excBackBook(HttpServletRequest request, Model model) {
         //获取借阅记录id
         String id = request.getParameter("id");
@@ -224,6 +230,7 @@ public class LendListController {
      */
     @ResponseBody
     @RequestMapping("/updateLendInfoSubmit")
+    @ApiOperation(value="异常还书",httpMethod ="POST")
     public DataInfo updateLendInfoSubmit(LendList lendList) {
         lendListService.backBook(lendList);
         return DataInfo.ok();
@@ -261,6 +268,7 @@ public class LendListController {
 
     @RequestMapping("/noticeBack")
     @ResponseBody
+    @ApiOperation(value="提醒还书",httpMethod ="GET")
     public DataInfo noticeBack(HttpSession session) {
         final Object user = session.getAttribute("user");
         if (user instanceof Admin) {
