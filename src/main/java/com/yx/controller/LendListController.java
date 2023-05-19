@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +30,6 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
 @Controller
 public class LendListController {
@@ -138,7 +136,7 @@ public class LendListController {
     @ResponseBody
     @RequestMapping("/addLend")
     @ApiOperation(value="借书信息提交",httpMethod ="POST")
-    public DataInfo addLend(String readerNumber,String ids){
+    public DataInfo addLend(String readerNumber,String ids, String ispay){
         //获取图书id的集合
         List<String> list= Arrays.asList(ids.split(","));
         if(list.size() > Constants.LEND_MAX || list.isEmpty() ) {
@@ -157,18 +155,39 @@ public class LendListController {
             if(list.size() > (Constants.LEND_MAX - lendLists.size())) {
                 return DataInfo.fail(String.format("Only %s book can be borrowed again", (Constants.LEND_MAX - lendLists.size())));
             } else {
+                if (ispay=="NO"){
+                    int payvalue=0;
+                    for(LendList mylend:lendLists){
+                        if (mylend.getBackType()==4 && mylend.getPay()==0){
+                            payvalue += 10;
+                        }
+                    }
+                    for(String bid:list){
+                        payvalue += 2;
+                    }
+                    if (payvalue>0){
+                        return DataInfo.fail("请支付",payvalue);
+                    }
+                }
                 //可借书
-                for(String bid:list) {
-                    LendList lendList = new LendList();
-                    lendList.setReaderId(readerCard2.getId());//读者id
-                    lendList.setBookId(Integer.valueOf(bid));//书的id
-                    lendList.setLendDate(new Date());
-                    lendListService.addLendListSubmit(lendList);
-                    //更变书的状态
-                    BookInfo info = bookInfoService.queryBookInfoById(Integer.valueOf(bid));
-                    //设置书的状态
-                    info.setStatus(1);
-                    bookInfoService.updateBookSubmit(info);
+                else {
+                    for(LendList mylend:lendLists){
+                        if (mylend.getBackType()==4 && mylend.getPay()==0){
+                            mylend.setPay(1);
+                        }
+                    }
+                    for (String bid : list) {
+                        LendList lendList = new LendList();
+                        lendList.setReaderId(readerCard2.getId());//读者id
+                        lendList.setBookId(Integer.valueOf(bid));//书的id
+                        lendList.setLendDate(new Date());
+                        lendListService.addLendListSubmit(lendList);
+                        //更变书的状态
+                        BookInfo info = bookInfoService.queryBookInfoById(Integer.valueOf(bid));
+                        //设置书的状态
+                        info.setStatus(1);
+                        bookInfoService.updateBookSubmit(info);
+                    }
                 }
             }
         }
@@ -179,9 +198,13 @@ public class LendListController {
     @ResponseBody
     @RequestMapping("/addLendOfReader")
     @ApiOperation(value="添加借阅记录",httpMethod ="POST")
-    public DataInfo addLendOfReader(HttpSession session, String ids){
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ids",value = "图书id",paramType = "query",dataType="String"),
+            @ApiImplicitParam(name = "ispay",value = "支付状态 0未支付，1已支付",defaultValue = "0",paramType = "query",dataType="String")
+    })
+    public DataInfo addLendOfReader(HttpSession session, String ids,String ispay){
         ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
-        return addLend(readerInfo.getId() + "", ids);
+        return addLend(readerInfo.getId() + "", ids, ispay);
     }
 
     /**

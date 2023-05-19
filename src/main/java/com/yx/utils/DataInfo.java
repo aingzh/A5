@@ -61,7 +61,9 @@ public class DataInfo implements Serializable {
     public static DataInfo fail(String msg) {
         return new DataInfo(Constants.FAIL_CODE, msg, null);
     }
-
+    public static DataInfo fail(String msg,Object data) {
+        return new DataInfo(Constants.FAIL_CODE, msg, data);
+    }
     public static DataInfo fail(int errorCode, String msg) {
         return new DataInfo(errorCode, msg, null);
     }

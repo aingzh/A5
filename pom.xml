@@ -195,6 +195,21 @@
       <artifactId>spring-boot-starter-web</artifactId>
       <version>2.4.5</version>
     </dependency>
+
+    <!-- 支付宝sdk -->
+    <!-- https://mvnrepository.com/artifact/com.alipay.sdk/alipay-sdk-java -->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>4.9.28.ALL</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.8</version>
+      <scope>compile</scope>
+    </dependency>
+
   </dependencies>
 
   <build>

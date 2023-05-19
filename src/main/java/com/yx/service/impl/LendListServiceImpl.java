@@ -64,6 +64,7 @@ public class LendListServiceImpl implements LendListService {
             // 超过30天则表示超时还书
             if (DateUtils.addDays(new Date(), -30).after(lendList.getLendDate())) {
                 lendList.setBackType(4);
+                lendList.setPay(0);
             } else {
                 lendList.setBackType(0);//正常还书
             }
