@@ -233,6 +233,7 @@
           <result column="author" property="author"></result>
       </association>
   </resultMap>
+
   <select id="queryBookInfoAll" parameterType="com.yx.po.BookInfo" resultMap="queryBookAllMap">
     select book_info.*,type_info.name as type_name, CASE WHEN ll.readerId IS NULL THEN 0 ELSE 1 END lendStatus
     from book_info
@@ -256,6 +257,7 @@
       </if>
     </where>
   </select>
+
   <select id="queryBookInfoAll2" parameterType="com.yx.po.BookInfo" resultMap="queryBookAllMap">
     select book_info.*,type_info.name as type_name, CASE WHEN ll.readerId IS NULL THEN 0 ELSE 1 END lendStatus,count(book_info.id) as counts
     from book_info
