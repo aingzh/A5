@@ -99,6 +99,43 @@ public class LendListController {
         return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());
     }
 
+    /*原来的改为未还，下面这个已还，也就是历史记录*/
+    /**
+     * 分页查询所有借阅记录
+     * 1 request获取
+     * 2、参数绑定
+     * 3、对象绑定
+     */
+    @ResponseBody
+    @RequestMapping("/lendListAll2")
+    @ApiOperation(value="可按条件分页查询所有借阅记录",httpMethod ="GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type",value = "借阅类型",paramType = "body",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "readerNumber",value = "读者id",defaultValue = "1",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "name",value = "读者姓名",paramType = "query",dataType="String",required = false),
+            @ApiImplicitParam(name = "status",value = "图书状态",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "pageNum",value = "页数",defaultValue = "1",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "limit",value = "每页显示条数",defaultValue = "15",paramType = "query",dataType="Integer",required = false)
+    })
+    public DataInfo lendListAll2(Integer type, String readerNumber, String name, Integer status,
+                                @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
+        LendList info=new LendList();
+        info.setBackType(type);
+        //创建读者对象
+        ReaderInfo reader=new ReaderInfo();
+        reader.setReaderNumber(readerNumber);
+        //把以上对象交给info
+        info.setReaderInfo(reader);
+        //图书对象
+        BookInfo book=new BookInfo();
+        book.setName(name);
+        book.setStatus(status);
+        info.setBookInfo(book);
+        //分页查询所有的记录信息
+        PageInfo pageInfo=lendListService.queryLendListAll2(info,page,limit);
+        return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());
+    }
+
     @ResponseBody
     @RequestMapping("/lendListAllOfReader")
     @ApiOperation(value="查询所有借阅记录",httpMethod ="GET")

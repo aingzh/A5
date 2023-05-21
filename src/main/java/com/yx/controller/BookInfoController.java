@@ -54,6 +54,7 @@ public class BookInfoController {
      * @param limit
      * @return
      */
+    /*原来的，避免出问题*/
     @RequestMapping("/bookAll")
     @ResponseBody       //@ResponseBody将java对象转为json格式的数据，表示该方法的返回结果直接写入 HTTP response body 中，一般在异步ajax获取数据时使用
     @ApiOperation(value="分页查询",httpMethod ="GET")
@@ -64,6 +65,34 @@ public class BookInfoController {
     })
     public DataInfo bookAll(BookInfo bookInfo, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit){
         PageInfo<BookInfo> pageInfo = bookInfoService.queryBookInfoAll(bookInfo,pageNum,limit);
+        return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());//总条数getTotal，数据封装成list,以便加载分页显示,由于加了ResponseBody,就会返回一个字符串
+    }
+
+    /*用来图书管理的*/
+    @RequestMapping("/bookAll2")
+    @ResponseBody       //@ResponseBody将java对象转为json格式的数据，表示该方法的返回结果直接写入 HTTP response body 中，一般在异步ajax获取数据时使用
+    @ApiOperation(value="分页查询",httpMethod ="GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "BookInfo",value = "查询条件",paramType = "body",dataType="BookInfo",required = false),
+            @ApiImplicitParam(name = "pageNum",value = "页数",defaultValue = "1",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "limit",value = "每页显示条数",defaultValue = "15",paramType = "query",dataType="Integer",required = false)
+    })
+    public DataInfo bookAll2(BookInfo bookInfo, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit){
+        PageInfo<BookInfo> pageInfo = bookInfoService.queryBookInfoAll2(bookInfo,pageNum,limit);
+        return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());//总条数getTotal，数据封装成list,以便加载分页显示,由于加了ResponseBody,就会返回一个字符串
+    }
+
+    /*用来借书的*/
+    @RequestMapping("/bookAll3")
+    @ResponseBody       //@ResponseBody将java对象转为json格式的数据，表示该方法的返回结果直接写入 HTTP response body 中，一般在异步ajax获取数据时使用
+    @ApiOperation(value="分页查询",httpMethod ="GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "BookInfo",value = "查询条件",paramType = "body",dataType="BookInfo",required = false),
+            @ApiImplicitParam(name = "pageNum",value = "页数",defaultValue = "1",paramType = "query",dataType="Integer",required = false),
+            @ApiImplicitParam(name = "limit",value = "每页显示条数",defaultValue = "15",paramType = "query",dataType="Integer",required = false)
+    })
+    public DataInfo bookAll3(BookInfo bookInfo, @RequestParam(defaultValue = "1") Integer pageNum, @RequestParam(defaultValue = "15") Integer limit){
+        PageInfo<BookInfo> pageInfo = bookInfoService.queryBookInfoAll3(bookInfo,pageNum,limit);
         return DataInfo.ok("success",pageInfo.getTotal(),pageInfo.getList());//总条数getTotal，数据封装成list,以便加载分页显示,由于加了ResponseBody,就会返回一个字符串
     }
 

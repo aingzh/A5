@@ -19,12 +19,21 @@
 </head>
 <body>
 <div class="layui-form layuimini-form">
-    <div class="layui-form-item">
+    <%--<div class="layui-form-item">
         <label class="layui-form-label required">Book Id</label>
         <div class="layui-input-block">
             <input type="text" name="id" lay-verify="required" lay-reqtext="Book id cannot be empty" placeholder="Please enter book id" autocomplete="off" class="layui-input">
         </div>
+    </div>--%>
+
+    <%--改为想要入库的数量了，id在服务层手动解决--%>
+    <div class="layui-form-item">
+        <label class="layui-form-label required">Book amount</label>
+        <div class="layui-input-block">
+            <input type="text" name="counts" lay-verify="required" lay-reqtext="Book amount cannot be empty" placeholder="Please enter book amount" autocomplete="off" class="layui-input">
+        </div>
     </div>
+
     <div class="layui-form-item">
         <label class="layui-form-label required">Book Name</label>
         <div class="layui-input-block">
@@ -32,9 +41,9 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">Book Number</label>
+        <label class="layui-form-label required">Book ISBN</label>
         <div class="layui-input-block">
-            <input type="text" name="isbn" lay-verify="required" lay-reqtext="Book number cannot be empty" placeholder="Please enter book number" autocomplete="off" class="layui-input">
+            <input type="text" name="isbn" lay-verify="required" lay-reqtext="Book ISBN cannot be empty" placeholder="Please enter book ISBN" autocomplete="off" class="layui-input">
         </div>
     </div>
 
@@ -65,6 +74,13 @@
         <label class="layui-form-label required">Book Language</label>
         <div class="layui-input-block">
             <input type="text" name="language" autocomplete="off" lay-verify="required" lay-reqtext="Book language cannot be empty" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label required">Book Location</label>
+        <div class="layui-input-block">
+            <input type="text" name="location" autocomplete="off" lay-verify="required" lay-reqtext="Book location cannot be empty" class="layui-input">
         </div>
     </div>
 

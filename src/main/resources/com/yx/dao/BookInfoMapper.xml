@@ -20,6 +20,9 @@
     <result column="lendStatus" jdbcType="INTEGER" property="lendStatus" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="searchId" jdbcType="INTEGER" property="searchId"/>
+    <result column="counts" jdbcType="INTEGER" property="counts"/>
+    <result column="borrowCounts" jdbcType="INTEGER" property="borrowCounts"/>
+    <result column="location" jdbcType="VARCHAR" property="location" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
@@ -109,6 +112,9 @@
       <if test="searchId != null">
         type_id + id,
       </if>
+      <if test="location != null">
+        location,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -146,6 +152,9 @@
       </if>
       <if test="searchId != null">
         #{searchId,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -190,6 +199,9 @@
       <if test="searchId != null">
         searchId = #{searchId,jdbcType=VARCHAR},
       </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -224,6 +236,29 @@
   <select id="queryBookInfoAll" parameterType="com.yx.po.BookInfo" resultMap="queryBookAllMap">
     select book_info.*,type_info.name as type_name, CASE WHEN ll.readerId IS NULL THEN 0 ELSE 1 END lendStatus
     from book_info
+    join type_info on type_info.id = book_info.type_id
+    left join lend_list ll on book_info.id = ll.bookId and ll.backDate IS NULL
+    <where>
+      <if test="name!=null">
+        and book_info.name like '%${name}%'
+      </if>
+      <if test="isbn!=null">
+        and book_info.isbn like '%${isbn}%'
+      </if>
+      <if test="typeId!=null">
+        and  book_info.type_id like '%${typeId}%'
+      </if>
+      <if test="author!=null">
+        and  book_info.author like '%${author}%'
+      </if>
+      <if test="searchId!=null">
+        and  book_info.search_id like '%${searchId}%'
+      </if>
+    </where>
+  </select>
+  <select id="queryBookInfoAll2" parameterType="com.yx.po.BookInfo" resultMap="queryBookAllMap">
+    select book_info.*,type_info.name as type_name, CASE WHEN ll.readerId IS NULL THEN 0 ELSE 1 END lendStatus,count(book_info.id) as counts
+    from book_info
         join type_info on type_info.id = book_info.type_id
         left join lend_list ll on book_info.id = ll.bookId and ll.backDate IS NULL
       <where>
@@ -243,6 +278,7 @@
           and  book_info.search_id like '%${searchId}%'
         </if>
       </where>
+    group by book_info.isbn
   </select>
 
   <!--根据图书类型获取图书对应数量信息-->
@@ -255,5 +291,11 @@
         LEFT JOIN type_info type ON type.id = book.type_id
     GROUP BY
 	    book.type_id
+  </select>
+
+  <!--根据图书的isbn直接查找有多少本在借，直接改动bookinfo的list，放弃联表了-->
+  <select id="queryBorrowCountsByIsbnInt" resultType="java.lang.Integer">
+    select count(*) from book_info
+    where isbn = #{isbn} and status = 1
   </select>
 </mapper>

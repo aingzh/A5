@@ -16,7 +16,7 @@
       "target": "_self",
       "child": [
         {
-          "title": "Reader Management",
+          "title": "Patron Management",
           "href": "readerIndex",
           "icon": "fa fa-credit-card",
           "target": "_self"
@@ -25,18 +25,6 @@
           "title": "Employee Management",
           "href": "workerIndex",
           "icon": "fa fa-user",
-          "target": "_self"
-        },
-        {
-          "title": "Type Management",
-          "href": "typeIndex",
-          "icon": "fa fa-file-text",
-          "target": "_self"
-        },
-        {
-          "title": "Notice Management",
-          "href": "noticeIndexOfBack",
-          "icon": "fa fa-bell",
           "target": "_self"
         },
         {
