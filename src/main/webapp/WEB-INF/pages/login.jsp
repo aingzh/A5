@@ -56,7 +56,7 @@
                         <option value="">Please select user type</option>
                         <option value="1">Administrator</option>
                         <option value="3">Library staff</option>
-                        <option value="2">Reader</option>
+                        <option value="2">Patron</option>
                     </select>
                 </div>
                 <div class="layui-form-item">

@@ -84,7 +84,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '${pageContext.request.contextPath}/bookAll',//Query type data
+            url: '${pageContext.request.contextPath}/bookAll2',//Query type data
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: 'Tips',
@@ -94,12 +94,14 @@
             cols: [[
                 {type: "checkbox", width: 50},
                 //{field: 'id', width: 100, title: 'ID', sort: true},
-                {field: 'isbn', width: 100, title: 'Book ID'},
-                {field: 'name', width: 100, title: 'Book Name'},
+                {field: 'isbn', width: 100, title: 'Book Isbn'},
+                {field: 'name', width: 200, title: 'Book Name'},
                 {templet:'<div>{{d.typeInfo.name}}</div>',width:100,title:'Book Type'},
-                {field: 'author', width: 80, title: 'Author'},
+                {field: 'author', width: 150, title: 'Author'},
                 {field: 'price', width: 80, title: 'Price'},
-                {field: 'language', width: 80, title: 'Language'},
+                {field: 'language', width: 150, title: 'Language'},
+                {field: 'counts', width: 80, title: 'Total'},
+                {field: 'borrowCounts', width: 150, title: 'Borrowed Total'},
                 {title: 'Operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],

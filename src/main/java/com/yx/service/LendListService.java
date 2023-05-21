@@ -9,6 +9,7 @@ public interface LendListService {
 
     //分页查询
     PageInfo<LendList> queryLendListAll(LendList lendList, int page, int limit);
+    PageInfo<LendList> queryLendListAll2(LendList lendList, int page, int limit);
 
     //添加借阅记录
     void addLendListSubmit(LendList lendList);

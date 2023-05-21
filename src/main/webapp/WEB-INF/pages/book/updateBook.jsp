@@ -66,6 +66,13 @@
     </div>
 
     <div class="layui-form-item">
+        <label class="layui-form-label required">Book Location</label>
+        <div class="layui-input-block">
+            <input type="text" name="location"  value="${info.location}"   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
         <label class="layui-form-label required">Book Price</label>
         <div class="layui-input-block">
             <input type="number" name="price"  value="${info.price}"   class="layui-input">

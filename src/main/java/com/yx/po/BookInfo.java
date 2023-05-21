@@ -106,6 +106,10 @@ public class BookInfo implements Serializable {
 
     private Integer counts;
 
+    private Integer borrowCounts;
+
+    private String location;
+
     @ApiModelProperty("借出状态，0未借，1借")
     private Integer lendStatus; // 借出状态，0未借，1借
     @ApiModelProperty("索书号")
@@ -381,5 +385,21 @@ public class BookInfo implements Serializable {
      */
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getBorrowCounts() {
+        return borrowCounts;
+    }
+
+    public void setBorrowCounts(Integer borrowCounts) {
+        this.borrowCounts = borrowCounts;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

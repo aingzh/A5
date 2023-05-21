@@ -1,6 +1,7 @@
 package com.yx.dao;
 
 import com.yx.po.BookInfo;
+import org.apache.ibatis.annotations.Select;
 
 import java.awt.print.Book;
 import java.util.List;
@@ -58,6 +59,12 @@ public interface BookInfoMapper {
      * 查询所有图书记录
      */
     List<BookInfo> queryBookInfoAll(BookInfo bookInfo);
+    List<BookInfo> queryBookInfoAll2(BookInfo bookInfo);
+
+    int queryBorrowCountsByIsbnInt(String isbn);
+
+    @Select("select max(id) from book_info")
+    int queryMaxBookId();
 
     /**
      * 根据类型获取图书数量

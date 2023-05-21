@@ -51,6 +51,7 @@ CREATE TABLE `book_info`  (
 --  `introduction` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简介',
   `introduction` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '简介',
   `language` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '语言',
+  `location` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '位置:eg.楼层1+区号A+书架001+书架第几层01',
   `price` double NULL DEFAULT NULL COMMENT '价格',
   `publish_date` date NULL DEFAULT NULL COMMENT '出版时间',
   `type_id` int(11) NULL DEFAULT NULL COMMENT '书籍类型',
@@ -70,12 +71,12 @@ INSERT INTO `book_info` VALUES (5, '经济学原理', '马歇尔', '机械工业
 INSERT INTO `book_info` VALUES (6, '大变局下的中国法治', '李卫东', '北京大学出版社', '100016', '十大经典法学著作', '中文', 42, '2015-04-05', 4, 1);
 */
 
-INSERT INTO `book_info` VALUES (1, 'journey to the west', 'shy naih-an', 'China Machine Press', '100011', 'teacher and pupil four people go to the buddhist paradise to take true through', 'Chinese', 42, '2020-03-20', 1, 0);
-INSERT INTO `book_info` VALUES (2, 'Romance of The Three Kingdoms', 'Luo Guanzhong', 'Tsinghua University Press', '100012', 'The end of the Eastern Han Dynasty divided into Three Kingdoms...', 'Chinese', 48, '2018-03-30', 1, 1);
-INSERT INTO `book_info` VALUES (3, 'Dream of Red Mansions', 'Cao Xueqin', 'China Machine Press', '100013', 'Stories between Baoyu and Many Men and Women', 'Chinese', 39, '2019-04-04', 1, 1);
-INSERT INTO `book_info` VALUES (4, 'das kapital', 'Marx', 'atomic press', '100014', "Marx's theory of surplus value", 'English', 42, '2019-04-05', 5, 0);
-INSERT INTO `book_info` VALUES (5, 'Principles of Economics ',' Marshall ', 'China Machine Press ', '100015',' A Book Recognized as epoch-making in Western economics', 'English', 45, '2020-04-06', 5, 0);
-INSERT INTO `book_info` VALUES (6, 'under the changing of Chinese rule of law', 'wei-dong li', 'Beijing university press', '100016', 'top ten classic works of law', 'Chinese', 42, '2015-04-05', 4, 1);
+INSERT INTO `book_info` VALUES (100001, 'journey to the west', 'shy naih-an', 'China Machine Press', '100011', 'teacher and pupil four people go to the buddhist paradise to take true through', 'Chinese', '1-A-001-01', 42, '2020-03-20', 1, 0);
+INSERT INTO `book_info` VALUES (100002, 'Romance of The Three Kingdoms', 'Luo Guanzhong', 'Tsinghua University Press', '100012', 'The end of the Eastern Han Dynasty divided into Three Kingdoms...', 'Chinese', '2-B-001-01', 48, '2018-03-30', 1, 1);
+INSERT INTO `book_info` VALUES (100003, 'Dream of Red Mansions', 'Cao Xueqin', 'China Machine Press', '100013', 'Stories between Baoyu and Many Men and Women', 'Chinese', '3-C-001-01', 39, '2019-04-04', 1, 1);
+INSERT INTO `book_info` VALUES (100004, 'das kapital', 'Marx', 'atomic press', '100014', "Marx's theory of surplus value", 'English', '2-B-002-03', 42, '2019-04-05', 5, 0);
+INSERT INTO `book_info` VALUES (100005, 'Principles of Economics ',' Marshall ', 'China Machine Press ', '100015',' A Book Recognized as epoch-making in Western economics', 'English', '3-C-002-03', 45, '2020-04-06', 5, 0);
+INSERT INTO `book_info` VALUES (100006, 'under the changing of Chinese rule of law', 'wei-dong li', 'Beijing university press', '100016', 'top ten classic works of law', 'Chinese', '3-B-002-01', 42, '2015-04-05', 4, 1);
 -- ----------------------------
 -- Table structure for lend_list
 -- ----------------------------
@@ -94,11 +95,11 @@ CREATE TABLE `lend_list`  (
 -- ----------------------------
 -- Records of lend_list
 -- ----------------------------
-INSERT INTO `lend_list` VALUES (15, 1, 1, '2023-04-04 10:07:31', '2023-04-04 21:09:27', 0, NULL);
-INSERT INTO `lend_list` VALUES (36, 2, 2, '2023-04-04 21:48:17', '2023-04-04 21:50:00', 2, NULL);
-INSERT INTO `lend_list` VALUES (37, 3, 3, '2023-04-04 21:50:22', '2023-04-04 21:50:32', 3, NULL);
-INSERT INTO `lend_list` VALUES (38, 5, 1, '2023-04-05 21:35:35', '2023-04-05 21:35:47', 1, NULL);
-INSERT INTO `lend_list` VALUES (39, 6, 3, '2023-04-05 21:42:35', NULL, NULL, NULL);
+INSERT INTO `lend_list` VALUES (15, 100001, 1, '2023-04-04 10:07:31', '2023-04-04 21:09:27', 0, NULL);
+INSERT INTO `lend_list` VALUES (36, 100002, 2, '2023-04-04 21:48:17', '2023-04-04 21:50:00', 2, NULL);
+INSERT INTO `lend_list` VALUES (37, 100003, 3, '2023-04-04 21:50:22', '2023-04-04 21:50:32', 3, NULL);
+INSERT INTO `lend_list` VALUES (38, 100005, 1, '2023-04-05 21:35:35', '2023-04-05 21:35:47', 1, NULL);
+INSERT INTO `lend_list` VALUES (39, 100006, 3, '2023-04-05 21:42:35', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for notice

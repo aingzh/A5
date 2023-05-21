@@ -55,17 +55,17 @@
         //方法级渲染
         table.render({
             elem: '#currentTableId'
-            ,url: '${pageContext.request.contextPath}/bookAll'
+            ,url: '${pageContext.request.contextPath}/bookAll3'
             ,cols: [[
                 {type: "checkbox", width: 50},
-                //{field: 'id', width: 100, title: 'ID', sort: true},
-                {field: 'isbn', width: 150, title: 'isbn'},
+                {field: 'id', width: 100, title: 'ID', sort: true},
+                {field: 'isbn', width: 80, title: 'isbn'},
                 //获取对象中的属性 对象
-                {templet:'<div>{{d.typeInfo.name}}</div>', width: 80, title: 'Book type'},
-                {field: 'name', width: 80, title: 'Book name'},
-                {field: 'author', width: 80, title: 'author'},
+                {templet:'<div>{{d.typeInfo.name}}</div>', width: 150, title: 'Book type'},
+                {field: 'name', width: 150, title: 'Book name'},
+                {field: 'author', width: 150, title: 'author'},
                 {field: 'price', width: 80, title: 'price'},
-                {field: 'language', width: 80, title: 'language'},
+                {field: 'language', width: 150, title: 'language'},
             ]]
             ,id: 'testReload'
             ,height: 310,

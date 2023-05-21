@@ -81,7 +81,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '${pageContext.request.contextPath}/lendListAll',//查询借阅图书记录
+            url: '${pageContext.request.contextPath}/lendListAll',//查询借阅图书记录//改为查询在借记录
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: 'Tips',
@@ -90,10 +90,10 @@
             }],
             cols: [[
                 {type: "checkbox", width: 50},
-                //{field: 'id', width: 100, title: 'ID', sort: true},
+                {field: 'id', width: 100, title: 'ID', sort: true},
                 {templet: '<div><a href="javascript:void(0)" style="color:#00b7ee" lay-event="bookInfoEvent">{{d.bookInfo.name}}</a></div>',
-                    width: 100, title: 'Book Name'},
-                {templet: '<div>{{d.readerInfo.readerNumber}}</div>', width: 120, title: 'Borrower Card'},
+                    width: 150, title: 'Book Name'},
+                {templet: '<div>{{d.readerInfo.readerNumber}}</div>', width: 150, title: 'Borrower Card'},
                 {templet: '<div><a href="javascript:void(0)" style="color:#00b7ee" lay-event="readerInfoEvent">{{d.readerInfo.realName}}</a></div>',
                     width: 100, title: 'Borrower'},
                 // {templet: '<div>{{d.reader.name}}</div>', width: 80, title: 'Borrower'},

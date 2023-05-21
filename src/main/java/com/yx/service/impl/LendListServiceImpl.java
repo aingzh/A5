@@ -8,6 +8,7 @@ import com.yx.po.BookInfo;
 import com.yx.po.LendList;
 import com.yx.service.LendListService;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +29,18 @@ public class LendListServiceImpl implements LendListService {
     public PageInfo<LendList> queryLendListAll(LendList lendList, int page, int limit) {
         PageHelper.startPage(page, limit);
         List<LendList> list = lendListMapper.queryLendListAll(lendList);
+        /*筛选状态为未还的书*/
+        list.removeIf(a -> a.getBackType() != null);
+        PageInfo pageInfo = new PageInfo(list);
+        return pageInfo;
+    }
 
+    @Override
+    public PageInfo<LendList> queryLendListAll2(LendList lendList, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        List<LendList> list = lendListMapper.queryLendListAll(lendList);
+        /*筛选状态为已还的书*/
+        list.removeIf(a -> a.getBackType() != null);
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;
     }

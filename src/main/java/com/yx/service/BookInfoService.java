@@ -11,6 +11,8 @@ public interface BookInfoService {
      * 查询所有记录
      */
     PageInfo<BookInfo> queryBookInfoAll(BookInfo bookInfo, Integer pageNum, Integer limit);
+    PageInfo<BookInfo> queryBookInfoAll2(BookInfo bookInfo, Integer pageNum, Integer limit);
+    PageInfo<BookInfo> queryBookInfoAll3(BookInfo bookInfo, Integer pageNum, Integer limit);
 
     /**
      * 添加图书记录
