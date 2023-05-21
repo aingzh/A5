@@ -26,6 +26,12 @@
           "href": "lendListIndexOfReader",
           "icon": "fa fa-gears",
           "target": "_self"
+        },
+        {
+          "title": "Borrow History",
+          "href": "noticeIndexOfReader",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
         }
       ]
     }

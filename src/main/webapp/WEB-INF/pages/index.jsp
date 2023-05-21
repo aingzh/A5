@@ -140,10 +140,10 @@
         var options = {
             <c:choose>
                 <c:when test="${sessionScope.type.equals('reader')}">
-                    iniUrl: "${pageContext.request.contextPath}/api/init2.json?v=2",    // 初始化接口，读者
+                    iniUrl: "${pageContext.request.contextPath}/api/init2.json?v=3",    // 初始化接口，读者
                 </c:when>
                 <c:when test="${sessionScope.type.equals('worker')}">
-                    iniUrl: "${pageContext.request.contextPath}/api/init1.json?v=3",    // 初始化接口，图书馆工作人员
+                    iniUrl: "${pageContext.request.contextPath}/api/init1.json?v=5",    // 初始化接口，图书馆工作人员
                 </c:when>
                 <c:when test="${sessionScope.type.equals('admin')}">
                     <c:if test="${sessionScope.user.adminType == 0}">
