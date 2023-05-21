@@ -40,7 +40,7 @@ public class LendListServiceImpl implements LendListService {
         PageHelper.startPage(page, limit);
         List<LendList> list = lendListMapper.queryLendListAll(lendList);
         /*筛选状态为已还的书*/
-        list.removeIf(a -> a.getBackType() != null);
+        list.removeIf(a -> a.getBackType() == null);
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;
     }
