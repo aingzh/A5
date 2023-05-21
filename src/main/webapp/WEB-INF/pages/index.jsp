@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+    <link rel="icon" href="${pageContext.request.contextPath}/images/2.jpg">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layuimini.css?v=2.0.4" media="all">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/themes/default.css" media="all">

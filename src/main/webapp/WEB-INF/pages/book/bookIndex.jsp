@@ -99,7 +99,8 @@
                 {templet:'<div>{{d.typeInfo.name}}</div>',width:100,title:'Book Type'},
                 {field: 'author', width: 150, title: 'Author'},
                 {field: 'price', width: 80, title: 'Price'},
-                {field: 'language', width: 150, title: 'Language'},
+                {field: 'language', width: 100, title: 'Language'},
+                {field: 'location', width: 120, title: 'Location'},
                 {field: 'counts', width: 80, title: 'Total'},
                 {field: 'borrowCounts', width: 150, title: 'Borrowed Total'},
                 {title: 'Operation', minWidth: 150, toolbar: '#currentTableBar', align: "center"}

@@ -16,7 +16,7 @@ body {
 /**必填红点 */
 .layuimini-form > .layui-form-item > .required:after {
     content: '*';
-    color: red;
+    color: #e74e0b;
     position: absolute;
     margin-left: 4px;
     font-weight: bold;
