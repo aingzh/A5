@@ -162,18 +162,10 @@ public class LendListController {
         return "lend/addLendListOfReader";
     }
 
-    /**
-     * 借书信息提交
-     * 1判断借阅号码是否存在
-     * 2、可借的数据是否大于等于当前的借书量
-     * 3、添加借书记录，同时改变书的状态信息
-     * cardnumber:借书号码
-     * ids：字符串 书id的集合
-     */
     @ResponseBody
     @RequestMapping("/addLend")
     @ApiOperation(value="借书信息提交",httpMethod ="POST")
-    public DataInfo addLend(String readerNumber,String ids, String ispay){
+    public DataInfo addLend(String readerNumber,String ids){
         //获取图书id的集合
         List<String> list= Arrays.asList(ids.split(","));
         if(list.size() > Constants.LEND_MAX || list.isEmpty() ) {
@@ -192,28 +184,7 @@ public class LendListController {
             if(list.size() > (Constants.LEND_MAX - lendLists.size())) {
                 return DataInfo.fail(String.format("Only %s book can be borrowed again", (Constants.LEND_MAX - lendLists.size())));
             } else {
-                if (ispay=="NO"){
-                    int payvalue=0;
-                    for(LendList mylend:lendLists){
-                        if (mylend.getBackType()==4 && mylend.getPay()==0){
-                            payvalue += 10;
-                        }
-                    }
-                    for(String bid:list){
-                        payvalue += 2;
-                    }
-                    if (payvalue>0){
-                        return DataInfo.fail("请支付",payvalue);
-                    }
-                }
-                //可借书
-                else {
-                    for(LendList mylend:lendLists){
-                        if (mylend.getBackType()==4 && mylend.getPay()==0){
-                            mylend.setPay(1);
-                        }
-                    }
-                    for (String bid : list) {
+                for (String bid : list) {
                         LendList lendList = new LendList();
                         lendList.setReaderId(readerCard2.getId());//读者id
                         lendList.setBookId(Integer.valueOf(bid));//书的id
@@ -224,7 +195,6 @@ public class LendListController {
                         //设置书的状态
                         info.setStatus(1);
                         bookInfoService.updateBookSubmit(info);
-                    }
                 }
             }
         }
@@ -237,12 +207,92 @@ public class LendListController {
     @ApiOperation(value="添加借阅记录",httpMethod ="POST")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ids",value = "图书id",paramType = "query",dataType="String"),
-            @ApiImplicitParam(name = "ispay",value = "支付状态 0未支付，1已支付",defaultValue = "0",paramType = "query",dataType="String")
     })
-    public DataInfo addLendOfReader(HttpSession session, String ids,String ispay){
+    public DataInfo addLendOfReader(HttpSession session, String ids){
         ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
-        return addLend(readerInfo.getId() + "", ids, ispay);
+        return addLend(readerInfo.getId() + "", ids);
     }
+    /**
+     * 借书信息提交
+     * 1判断借阅号码是否存在
+     * 2、可借的数据是否大于等于当前的借书量
+     * 3、添加借书记录，同时改变书的状态信息
+     * cardnumber:借书号码
+     * ids：字符串 书id的集合
+     */
+//    @ResponseBody
+//    @RequestMapping("/addLend")
+//    @ApiOperation(value="借书信息提交",httpMethod ="POST")
+//    public DataInfo addLend(String readerNumber,String ids, String ispay){
+//        //获取图书id的集合
+//        List<String> list= Arrays.asList(ids.split(","));
+//        if(list.size() > Constants.LEND_MAX || list.isEmpty() ) {
+//            return DataInfo.fail(String.format("Only 1~%s can be borrowed for this book", Constants.LEND_MAX));
+//        }
+//
+//        //判断卡号是否存在
+//        ReaderInfo reader=new ReaderInfo();
+//        reader.setReaderNumber(readerNumber);
+//        PageInfo<ReaderInfo> pageInfo=readerService.queryAllReaderInfo(reader,1,1);
+//        if(pageInfo.getList().size()==0){
+//            return DataInfo.fail("Card number information does not exist");
+//        } else{
+//            ReaderInfo readerCard2=pageInfo.getList().get(0);
+//            List<LendList> lendLists = lendListService.queryListByReader(readerCard2.getId());
+//            if(list.size() > (Constants.LEND_MAX - lendLists.size())) {
+//                return DataInfo.fail(String.format("Only %s book can be borrowed again", (Constants.LEND_MAX - lendLists.size())));
+//            } else {
+//                if (ispay=="NO"){
+//                    int payvalue=0;
+//                    for(LendList mylend:lendLists){
+//                        if (mylend.getBackType()==4 && mylend.getPay()==0){
+//                            payvalue += 10;
+//                        }
+//                    }
+//                    for(String bid:list){
+//                        payvalue += 2;
+//                    }
+//                    if (payvalue>0){
+//                        return DataInfo.fail("请支付",payvalue);
+//                    }
+//                }
+//                //可借书
+//                else {
+//                    for(LendList mylend:lendLists){
+//                        if (mylend.getBackType()==4 && mylend.getPay()==0){
+//                            mylend.setPay(1);
+//                        }
+//                    }
+//                    for (String bid : list) {
+//                        LendList lendList = new LendList();
+//                        lendList.setReaderId(readerCard2.getId());//读者id
+//                        lendList.setBookId(Integer.valueOf(bid));//书的id
+//                        lendList.setLendDate(new Date());
+//                        lendListService.addLendListSubmit(lendList);
+//                        //更变书的状态
+//                        BookInfo info = bookInfoService.queryBookInfoById(Integer.valueOf(bid));
+//                        //设置书的状态
+//                        info.setStatus(1);
+//                        bookInfoService.updateBookSubmit(info);
+//                    }
+//                }
+//            }
+//        }
+//
+//        return DataInfo.ok();
+//    }
+//
+//    @ResponseBody
+//    @RequestMapping("/addLendOfReader")
+//    @ApiOperation(value="添加借阅记录",httpMethod ="POST")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "ids",value = "图书id",paramType = "query",dataType="String"),
+//            @ApiImplicitParam(name = "ispay",value = "支付状态 0未支付，1已支付",defaultValue = "0",paramType = "query",dataType="String")
+//    })
+//    public DataInfo addLendOfReader(HttpSession session, String ids,String ispay){
+//        ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
+//        return addLend(readerInfo.getId() + "", ids, ispay);
+//    }
 
     /**
      * 删除借阅记录
