@@ -145,6 +145,15 @@ public class LendListController {
         return lendListAll(backType, readerInfo.getReaderNumber(), name, status, page, limit);
     }
 
+    @ResponseBody
+    @RequestMapping("/lendListAllOfReader2")
+    @ApiOperation(value="查询所有借阅记录",httpMethod ="GET")
+    public DataInfo lendListAllOfReader2(HttpSession session, Integer backType, String name, Integer status,
+                                        @RequestParam(defaultValue = "1")Integer page,@RequestParam(defaultValue = "15")Integer limit){
+        ReaderInfo readerInfo = (ReaderInfo) session.getAttribute("user");
+        return lendListAll2(backType, readerInfo.getReaderNumber(), name, status, page, limit);
+    }
+
     /**
      * 添加跳转
      */

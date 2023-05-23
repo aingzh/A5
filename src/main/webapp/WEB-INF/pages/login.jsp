@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/public.css" media="all">
 
-    <style>
+    <%--<style>
         html, body {width: 100%;height: 100%;overflow: hidden}
         body {background: url("${pageContext.request.contextPath}/images/loginbg.png") no-repeat center;}
         body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
@@ -25,6 +25,20 @@
         .admin-login-background {width:450px;height:300px;position:absolute;left:65%;top:45%;margin-top:-120px;margin-left:-50px;opacity:0.9;}
         .logo-title {text-align:center;letter-spacing:2px;padding:14px 0;}
         .logo-title h1 {color:#1E9FFF;font-size:25px;font-weight:bold;}
+        .login-form {background-color:#fff;border:1px solid #fff;border-radius:3px;padding:14px 20px;box-shadow:0 0 8px #eeeeee;}
+        .login-form .layui-form-item {position:relative;}
+        .login-form .layui-form-item label {position:absolute;left:1px;top:1px;width:38px;line-height:36px;text-align:center;color:#d2d2d2;}
+        .login-form .layui-form-item input {padding-left:36px;}
+        .captcha-img img {height:34px;border:1px solid #e6e6e6;height:36px;width:100%;}
+    </style>--%>
+    <style>
+        html, body {width: 100%;height: 100%;overflow: hidden}
+        body {background: url("${pageContext.request.contextPath}/images/loginbg.jpg") no-repeat center;}
+        body:after {content:'';background-repeat:no-repeat;background-size:cover;-webkit-filter:blur(3px);-moz-filter:blur(3px);-o-filter:blur(3px);-ms-filter:blur(3px);filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;}
+        .layui-container {width: 100%;height: 100%;overflow: hidden}
+        .admin-login-background {width:450px;height:300px;position:absolute;left:65%;top:45%;margin-top:-120px;margin-left:-50px;opacity:0.9;}
+        .logo-title {text-align:center;letter-spacing:2px;padding:14px 0;}
+        .logo-title h1 {color: #ff801e;font-size:25px;font-weight:bold;}
         .login-form {background-color:#fff;border:1px solid #fff;border-radius:3px;padding:14px 20px;box-shadow:0 0 8px #eeeeee;}
         .login-form .layui-form-item {position:relative;}
         .login-form .layui-form-item label {position:absolute;left:1px;top:1px;width:38px;line-height:36px;text-align:center;color:#d2d2d2;}

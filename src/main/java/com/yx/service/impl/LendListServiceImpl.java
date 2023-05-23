@@ -40,7 +40,7 @@ public class LendListServiceImpl implements LendListService {
         PageHelper.startPage(page, limit);
         List<LendList> list = lendListMapper.queryLendListAll(lendList);
         /*筛选状态为已还的书*/
-        list.removeIf(a -> a.getBackType() != null);
+        list.removeIf(a -> a.getBackType() == null);
         PageInfo pageInfo = new PageInfo(list);
         return pageInfo;
     }
@@ -63,7 +63,8 @@ public class LendListServiceImpl implements LendListService {
             //根据id查询图书记录信息
             BookInfo bookInfo = bookInfoMapper.selectByPrimaryKey(Integer.parseInt(bid));
             bookInfo.setStatus(0);//该为未借出
-            bookInfoMapper.updateByPrimaryKey(bookInfo);
+            //bookInfoMapper.updateByPrimaryKey(bookInfo);
+            bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
         }
     }
 
@@ -89,7 +90,8 @@ public class LendListServiceImpl implements LendListService {
             //根据id查询图书记录信息
             BookInfo bookInfo = bookInfoMapper.selectByPrimaryKey(Integer.parseInt(bid));
             bookInfo.setStatus(0);//该为未借出
-            bookInfoMapper.updateByPrimaryKey(bookInfo);
+            //bookInfoMapper.updateByPrimaryKey(bookInfo);
+            bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
         }
     }
 
@@ -106,7 +108,8 @@ public class LendListServiceImpl implements LendListService {
         if (lend.getBackType() == 0 || lend.getBackType() == 1) {
             BookInfo bookInfo = bookInfoMapper.selectByPrimaryKey(lend.getBookId());
             bookInfo.setStatus(0);//该为未借出
-            bookInfoMapper.updateByPrimaryKey(bookInfo);
+            //bookInfoMapper.updateByPrimaryKey(bookInfo);
+            bookInfoMapper.updateByPrimaryKeySelective(bookInfo);
         }
 
     }

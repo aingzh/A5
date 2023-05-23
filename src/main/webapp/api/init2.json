@@ -16,12 +16,6 @@
       "target": "_self",
       "child": [
         {
-          "title": "Notice Management",
-          "href": "noticeIndexOfReader",
-          "icon": "fa fa-window-maximize",
-          "target": "_self"
-        },
-        {
           "title": "Borrowing Management",
           "href": "queryLookBookList2",
           "icon": "fa fa-gears",
@@ -31,6 +25,12 @@
           "title": "Book Borrowing",
           "href": "lendListIndexOfReader",
           "icon": "fa fa-gears",
+          "target": "_self"
+        },
+        {
+          "title": "Borrow History",
+          "href": "noticeIndexOfReader",
+          "icon": "fa fa-window-maximize",
           "target": "_self"
         }
       ]

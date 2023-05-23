@@ -22,6 +22,12 @@
           "target": "_self"
         },
         {
+          "title": "Borrow History",
+          "href": "noticeIndexOfBack",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
           "title": "Book Management",
           "href": "bookIndex",
           "icon": "fa fa-book",

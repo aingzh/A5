@@ -30,7 +30,7 @@
 
 /**左侧菜单选中-配色*/
 .layui-layout-admin .layui-nav-tree .layui-this, .layui-layout-admin .layui-nav-tree .layui-this > a, .layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this, .layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this a {
-    background-color: #1aa094 !important;
+    background-color: #17a99c !important;
 }
 
 
@@ -48,7 +48,7 @@
 }
 
 .layuimini-header-menu > .layui-nav-item {
-    color: #1b1d21;
+    color: #0b2e79;
     height: 60px !important;
     line-height: 60px !important;
 }
@@ -380,7 +380,7 @@
 }
 
 .layui-layout-body .layuimini-menu-left .layui-nav .layui-nav-child .layui-nav-child .layui-nav-child .layui-nav-child a {
-    padding-left: 65px;
+    padding-left: 130px;
 }
 
 .layui-layout-body .layuimini-menu-left .layui-nav .layui-nav-itemed > .layui-nav-child {
@@ -457,7 +457,7 @@
 }
 
 .layui-nav-item.layui-this {
-    background-color: #1b1d21;
+    background-color: #032e81;
 }
 
 .layui-width-height {
@@ -538,7 +538,7 @@
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #1E9FFF;
+    border-top-color: #e58321;
     animation: spin 2s linear infinite;
 }
 
@@ -551,7 +551,7 @@
     bottom: 5px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #1E9FFF;
+    border-top-color: #e78e08;
     animation: spin 3s linear infinite;
 }
 
@@ -564,7 +564,7 @@
     bottom: 15px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: #1E9FFF;
+    border-top-color: #e78e08;
     animation: spin 1.5s linear infinite;
 }
 
